@@ -1,0 +1,18 @@
+<!--pages/portal/portal.wxml-->
+<view class="container">
+
+  <!-- Application Form -->
+  <view class="uploader">
+    <navigator url="../appForm/appForm" open-type="navigate" class="uploader-text">
+      <text>我要申请</text>
+    </navigator>
+  </view>
+
+  <!-- Course List -->
+  <view class="uploader">
+    <navigator url="../course/course" open-type="navigate" class="uploader-text">
+      <text>我要选课</text>
+    </navigator>
+  </view>
+
+</view>

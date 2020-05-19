@@ -1,0 +1,48 @@
+<!--pages/appForm/appForm.wxml-->
+
+<view class="container">
+  <view class="page-body">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+
+      <view class="page-section">
+        <view class="page-section-title">你的姓名</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="weui-input" name="name" placeholder="李光头" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">性别</view>
+        <radio-group name="gender">
+          <label><radio value="male"/>男</label>
+          <label><radio value="female"/>女</label>
+          <label><radio value="coolPerson"/>厉害的人</label>
+        </radio-group>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">选择你的特点</view>
+        <checkbox-group name="coolnessLevel">
+          <label><checkbox value="cool"/>厉害</label>
+          <label><checkbox value="reallyCool"/>很厉害</label>
+          <label><checkbox value="tooCoolToBeTrue"/>超级厉害</label>
+        </checkbox-group>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">今天心情如何(0-100)</view>
+        <slider value="50" name="happinessLevel" show-value ></slider>
+      </view>
+
+      <view class="btn-area">
+        <button style="margin: 30rpx 0" type="primary" formType="submit">提交回答</button>
+        <button style="margin: 30rpx 0" formType="reset">重置回答</button>
+      </view>
+    </form>
+  </view>
+
+</view>
