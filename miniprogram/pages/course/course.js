@@ -62,5 +62,20 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  formSubmit(e) {
+    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+    const db = wx.cloud.database();
+    const courseSelection = db.collection("courseSelection");
+    courseSelection.add({
+      data: e.detail.value,
+      success: function(res) {
+        console.log(res);
+      }
+    })
+    wx.reLaunch({
+      url: '../portal/portal',
+    })
+  },
 })

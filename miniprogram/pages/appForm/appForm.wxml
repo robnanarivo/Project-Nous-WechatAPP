@@ -2,7 +2,7 @@
 
 <view class="container">
   <view class="page-body">
-    <form catchsubmit="formSubmit" catchreset="formReset">
+    <form catchsubmit="formSubmit">
 
       <view class="page-section">
         <view class="page-section-title">你的姓名</view>
@@ -34,13 +34,29 @@
       </view>
 
       <view class="page-section page-section-gap">
-        <view class="page-section-title">今天心情如何(0-100)</view>
-        <slider value="50" name="happinessLevel" show-value ></slider>
+        <view class="page-section-title">为啥要来格致？</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="weui-input" name="whyProjectNous" placeholder="好玩" />
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">格致有什么好玩的？</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="weui-input" name="whatFun" placeholder="焚书坑儒" />
+            </view>
+          </view>
+        </view>
       </view>
 
       <view class="btn-area">
         <button style="margin: 30rpx 0" type="primary" formType="submit">提交回答</button>
-        <button style="margin: 30rpx 0" formType="reset">重置回答</button>
       </view>
     </form>
   </view>

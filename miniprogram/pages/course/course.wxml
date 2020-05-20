@@ -1,2 +1,24 @@
 <!--pages/course/course.wxml-->
-<text>pages/course/course.wxml</text>
+
+<view class="container">
+  <view class="page-body">
+    <form catchsubmit="formSubmit">
+
+      <!--课程列表-->
+      <!--这里可以用列表渲染：wx:for={{ array }}-->
+      <view class="page-section page-section-gap">
+        <view class="page-section-title">课程</view>
+        <radio-group name="courseSelected">
+          <label><radio value="history"/>历史</label>
+          <label><radio value="science"/>科学</label>
+          <label><radio value="math"/>数学</label>
+        </radio-group>
+      </view>
+
+      <view class="btn-area">
+        <button type="primary" form-type="submit">选完了</button>
+      </view>
+
+    </form>
+  </view>
+</view>
