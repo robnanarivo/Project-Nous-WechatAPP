@@ -15,4 +15,10 @@
     </navigator>
   </view>
 
+    <view class="uploader">
+    <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
+      <text>我是管理员</text>
+    </navigator>
+  </view>
+
 </view>

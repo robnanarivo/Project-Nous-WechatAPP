@@ -1,0 +1,7 @@
+<!--miniprogram/pages/admission/admission.wxml-->
+<view wx:for="{{apps}}" wx:key="unique">
+  {{index}}: {{item.name}}
+</view>
+<view>
+  <text wx:if="{{loading}}">Loading</text>
+</view>
