@@ -1,0 +1,11 @@
+<!--pages/status/status.wxml-->
+<text wx:if="{{Status == 0}}">尚未录取</text>
+<text wx:elif="{{Status == 1}}">已录取</text>
+<text wx:else>已拒绝</text>
+
+  <!-- Course List -->
+  <view wx:if="{{Status == 1}}" class="uploader">
+    <navigator url="../course/course" open-type="navigate" class="uploader-text">
+      <text>我要选课</text>
+    </navigator>
+  </view>

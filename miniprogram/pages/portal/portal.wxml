@@ -2,16 +2,16 @@
 <view class="container">
 
   <!-- Application Form -->
-  <view class="uploader">
+  <view wx:if="{{IsNewuser == true}}" class="uploader">
     <navigator url="../appForm/appForm" open-type="navigate" class="uploader-text">
       <text>我要申请</text>
     </navigator>
   </view>
 
-  <!-- Course List -->
-  <view class="uploader">
-    <navigator url="../course/course" open-type="navigate" class="uploader-text">
-      <text>我要选课</text>
+  <!-- Check status -->
+  <view wx:if="{{IsNewuser == false}}" class="uploader">
+    <navigator url="../status/status" open-type="navigate" class="uploader-text">
+      <text>查看状态</text>
     </navigator>
   </view>
 
