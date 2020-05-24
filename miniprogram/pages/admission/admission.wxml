@@ -1,7 +1,11 @@
 <!--miniprogram/pages/admission/admission.wxml-->
-<view wx:for="{{apps}}" wx:key="unique">
-  {{index}}: {{item.name}}
-</view>
-<view>
-  <text wx:if="{{loading}}">Loading</text>
-</view>
+<mp-cells ext-class="my-cells" title="所有申请">
+  <view wx:for="{{apps}}" wx:key="unique">
+    <mp-cell link="true">
+      <view>{{item.name}}</view>
+      <view slot="footer" style="color: {{item.reviewed ? (item.accepted ? 'green' : 'gray'): 'blue'}};">{{item.reviewed ? (item.accepted ? '已录取' : '未录取') : '未阅'}}</view>
+    </mp-cell>
+  </view>
+</mp-cells>
+<mp-loading show="{{loading}}"></mp-loading>
+
