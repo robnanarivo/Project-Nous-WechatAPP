@@ -15,9 +15,17 @@
     </navigator>
   </view>
 
-    <view class="uploader">
+  <!-- Admin -->
+  <view class="uploader">
     <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
       <text>我是管理员</text>
+    </navigator>
+  </view>
+
+  <!-- Add a Course -->
+  <view class="uploader">
+    <navigator url="../addCourse/addCourse" open-type="navigate" class="uploader-text">
+      <text>发布课程</text>
     </navigator>
   </view>
 

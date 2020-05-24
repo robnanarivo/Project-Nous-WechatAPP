@@ -3,7 +3,8 @@
     "pages/portal/portal",
     "pages/appForm/appForm",
     "pages/course/course",
-    "pages/admission/admission"
+    "pages/admission/admission",
+    "pages/addCourse/addCourse"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
