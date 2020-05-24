@@ -49,7 +49,7 @@
       </view>
 
       <view class="page-section page-section-gap">
-        <view class="page-section-title">课程时间(年份)</view>
+        <view class="page-section-title">课程年份</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd" style="margin: 30rpx 0" >
@@ -66,6 +66,14 @@
           <label><radio value="贵阳"/>贵阳</label>
           <label><radio value="凯里"/>凯里</label>
           <label><radio value="烟台"/>烟台</label>
+        </radio-group>
+      </view>
+
+        <view class="page-section page-section-gap">
+        <view class="page-section-title">请选择课程时间</view>
+        <radio-group name="time">
+          <label><radio value="AM"/>上午</label>
+          <label><radio value="PM"/>下午</label>
         </radio-group>
       </view>
 

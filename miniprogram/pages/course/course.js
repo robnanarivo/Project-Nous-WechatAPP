@@ -5,14 +5,24 @@ Page({
    * Page initial data
    */
   data: {
-
+    courseInfo: [],
   },
 
   /**
    * Lifecycle function--Called when page load
    */
+  // TODO: load only contents related to the camp of selection
   onLoad: function (options) {
+    const courseList = wx.cloud.database().collection("courseList");
 
+    let page = this;
+    courseList.get({
+      success: function(res) {
+        page.setData({
+          courseInfo: res.data,
+        });
+      }
+    })
   },
 
   /**
