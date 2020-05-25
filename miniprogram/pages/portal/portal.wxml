@@ -18,7 +18,7 @@
   <!-- Admin -->
   <view class="uploader">
     <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
-      <text>我是管理员</text>
+      <text>查看申请</text>
     </navigator>
   </view>
 

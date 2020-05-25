@@ -1,0 +1,11 @@
+<!--miniprogram/pages/appView/appView.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <mp-cells ext-class="my-cells" title="申请">
+      <mp-cell title="姓名：{{app.name}}"></mp-cell>
+      <mp-cell title="性别：{{app.gender}}"></mp-cell>
+      <mp-cell title="为什么要来格致计划：{{app.whyProjectNous}}"></mp-cell>
+    </mp-cells>
+    <mp-loading show="{{loading}}"></mp-loading>
+  </view>
+</view>
