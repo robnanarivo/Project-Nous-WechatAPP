@@ -1,83 +1,72 @@
 // pages/course/course.js
-Page({
 
-  /**
-   * Page initial data
-   */
+Page({
   data: {
-    courseInfo: [],
+    courseInfoAM: [], //上午可选的课
+    courseInfoPM: [], //下午可选的课
+    courseSelected: {
+      AM: null,
+      PM: null,
+    }, //已选课程
+    finishedAM: false,
+    venue: "长沙", // TODO: need to replace this later
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  // TODO: load only contents related to the camp of selection
   onLoad: function (options) {
     const courseList = wx.cloud.database().collection("courseList");
 
     let page = this;
-    courseList.get({
+    courseList.where({
+      venue: this.data.venue
+    }).get({
       success: function(res) {
         page.setData({
-          courseInfo: res.data,
+          courseInfoAM: res.data.filter(obj => {
+            return obj.time === "AM"
+          }),
+          courseInfoPM: res.data.filter(obj => {
+            return obj.time === "PM"
+          }),
         });
       }
     })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
+  selected(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
 
+    if (this.data.finishedAM === false) {
+      this.setData({
+        "courseSelected.AM": e.detail.value,
+      });
+    } else {
+      this.setData({
+        "courseSelected.PM": e.detail.value,
+      });
+    }
   },
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
+  next() {
+    this.setData({
+      finishedAM: true
+    });
   },
 
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
+  back() {
+    this.setData(
+      {
+        finishedAM: false,
+        "courseSelected.PM": null,
+      }
+    );
   },
 
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  formSubmit(e) {
+  submit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value);
+
     const db = wx.cloud.database();
     const courseSelection = db.collection("courseSelection");
+
     courseSelection.add({
       data: e.detail.value,
       success: function(res) {

@@ -1,7 +1,24 @@
 <!--pages/course/course.wxml-->
 
-<mp-cells title="课程列表">
-  <mp-checkbox-group prop="radio" multi="{{false}}">
-    <mp-checkbox wx:for="{{courseInfo}}" label="{{item.courseName}}" value="{{item.courseID}}"></mp-checkbox>
-  </mp-checkbox-group>
-</mp-cells>
+<block wx:if="{{finishedAM === false}}">
+  <mp-cells title="上午课程列表">
+    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
+      <mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}" value="{{item.courseID}}" checked="{{item.courseID === courseSelected.AM}}"></mp-checkbox> 
+    </mp-checkbox-group>
+  </mp-cells>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="next">继续</button>
+  </view>
+</block>
+
+<block wx:if="{{finishedAM === true}}">
+  <mp-cells title="下午课程列表">
+    <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
+      <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{item.courseID}}"></mp-checkbox>
+    </mp-checkbox-group>
+  </mp-cells>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="back">返回</button>
+    <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+  </view>
+</block>
