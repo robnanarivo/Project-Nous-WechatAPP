@@ -1,25 +1,29 @@
-// miniprogram/pages/admission/admission.js
+// miniprogram/pages/appView/appView.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    apps: [],
-    loading: true,
+    app: {},
+    loading: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("asdfasdfasdf");
     const db = wx.cloud.database();
     const studentApp = db.collection("studentApp");
+    const appId = options.id;
     var that = this;
-    studentApp .get({
+    studentApp.where({
+      _id: appId
+    }).get({
       success: function(res) {
         that.setData({
-          apps: res.data,
+          app: res.data[0],
           loading: false
         });
       }
@@ -30,6 +34,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+
   },
 
   /**
