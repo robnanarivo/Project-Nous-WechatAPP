@@ -1,5 +1,7 @@
 // pages/course/course.js
 
+const app = getApp();
+
 Page({
   data: {
     courseInfoAM: [], //上午可选的课
@@ -9,27 +11,73 @@ Page({
       PM: null,
     }, //已选课程
     finishedAM: false,
-    venue: "长沙", // TODO: need to replace this later
+    venue: null, //读书营地点
   },
 
   onLoad: function (options) {
     const courseList = wx.cloud.database().collection("courseList");
-
+    const studentApp = wx.cloud.database().collection("studentApp");
     let page = this;
-    courseList.where({
-      venue: this.data.venue
-    }).get({
-      success: function(res) {
-        page.setData({
-          courseInfoAM: res.data.filter(obj => {
-            return obj.time === "AM"
-          }),
-          courseInfoPM: res.data.filter(obj => {
-            return obj.time === "PM"
-          }),
-        });
-      }
+
+    new Promise(function(resolve, reject) {
+      getOpenId();
+      resolve("Got Open ID successfully");
     })
+      .then(setVenueCourse(page, app.globalData.openid))
+
+    // 通过微信云函数获取Open ID
+    function getOpenId() {
+      wx.cloud.callFunction({
+        name: "login",
+        data: {},
+        success: res => {
+          console.log("Open ID is", res.result.openid);
+          app.globalData.openid = res.result.openid;
+        },
+        fail: err => {
+          console.error("Failed to get open ID", err);
+        },
+      })
+    }
+
+    // 先获取学生报名的夏令营地点，再获取课程列表
+    function setVenueCourse(page, openid) {
+      studentApp.where({
+        _openid: openid,
+      }).get({
+        success: res => {
+          console.log("Successfully getting student", res.data[0].name);
+          page.setData({
+            venue: res.data[0].venue,
+          });
+          setCourse(page);
+        },
+        fail: err => {
+          console.error("Failed to get venue", err)
+        },
+      });
+    }
+
+    // 获取课程列表，在setVenueCourse中被调用
+    function setCourse(page) {
+      courseList.where({
+        venue: page.data.venue
+      }).get({
+        success: function(res) {
+          page.setData({
+            courseInfoAM: res.data.filter(obj => {
+              return obj.time === "AM"
+            }),
+            courseInfoPM: res.data.filter(obj => {
+              return obj.time === "PM"
+            }),
+          });
+        },
+        fail: err => {
+          console.error("Failed to get course list", err)
+        },
+      });
+    }
   },
 
   selected(e) {
