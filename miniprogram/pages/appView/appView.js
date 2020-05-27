@@ -32,6 +32,7 @@ Page({
       const db = wx.cloud.database();
       const studentApp = db.collection("studentApp");
       var that = this;
+      console.log(this.data.app._id);
       studentApp.doc(this.data.app._id).update({
         data: {
           reviewed: true,
@@ -57,6 +58,7 @@ Page({
       const db = wx.cloud.database();
       const studentApp = db.collection("studentApp");
       var that = this;
+      console.log(this.data.app._id);
       studentApp.doc(this.data.app._id).update({
         data: {
           reviewed: true,
