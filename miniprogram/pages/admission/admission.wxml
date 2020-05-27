@@ -5,7 +5,7 @@
       <view wx:for="{{apps}}" wx:key="unique">
         <mp-cell link url="../appView/appView?id={{item._id}}">
           <view>{{item.name}}</view>
-          <view slot="footer" style="color: {{item.reviewed ? (item.accepted ? 'green' : 'gray'): 'blue'}};">{{item.reviewed ? (item.accepted ? '已录取' : '未录取') : '未阅'}}</view>
+          <view slot="footer" style="color: {{item.reviewed ? (item.accepted ? 'green' : 'gray'): 'blue'}};">{{item.reviewed ? (item.accepted ? '已录取' : '已拒绝') : '未阅'}}</view>
         </mp-cell>
       </view>
     </mp-cells>
