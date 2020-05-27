@@ -6,6 +6,7 @@
       <mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}" value="{{item.courseID}}" checked="{{item.courseID === courseSelected.AM}}"></mp-checkbox> 
     </mp-checkbox-group>
   </mp-cells>
+  <mp-loading show="{{loading}}"></mp-loading>
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="next">继续</button>
   </view>
@@ -17,6 +18,7 @@
       <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{item.courseID}}"></mp-checkbox>
     </mp-checkbox-group>
   </mp-cells>
+  <mp-loading show="{{loading}}"></mp-loading>
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="back">返回</button>
     <button class="weui-btn" type="primary" bindtap="submit">提交</button>

@@ -12,6 +12,7 @@ Page({
     }, //已选课程
     finishedAM: false,
     venue: null, //读书营地点
+    loading: true,
   },
 
   onLoad: function (options) {
@@ -19,26 +20,7 @@ Page({
     const studentApp = wx.cloud.database().collection("studentApp");
     let page = this;
 
-    new Promise(function(resolve, reject) {
-      getOpenId();
-      resolve("Got Open ID successfully");
-    })
-      .then(setVenueCourse(page, app.globalData.openid))
-
-    // 通过微信云函数获取Open ID
-    function getOpenId() {
-      wx.cloud.callFunction({
-        name: "login",
-        data: {},
-        success: res => {
-          console.log("Open ID is", res.result.openid);
-          app.globalData.openid = res.result.openid;
-        },
-        fail: err => {
-          console.error("Failed to get open ID", err);
-        },
-      })
-    }
+    setVenueCourse(page, app.globalData.openid)
 
     // 先获取学生报名的夏令营地点，再获取课程列表
     function setVenueCourse(page, openid) {
@@ -71,6 +53,7 @@ Page({
             courseInfoPM: res.data.filter(obj => {
               return obj.time === "PM"
             }),
+            loading: false,
           });
         },
         fail: err => {
