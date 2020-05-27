@@ -16,17 +16,6 @@
       </view>
 
       <view class="page-section page-section-gap">
-        <view class="page-section-title">领读人名称</view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__bd" style="margin: 30rpx 0" >
-              <input class="weui-input" name="instructor" placeholder="请输入领读人的姓名" />
-            </view>
-          </view>
-        </view>
-      </view>
-
-      <view class="page-section page-section-gap">
         <view class="page-section-title">课程ID</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
@@ -37,23 +26,41 @@
         </view>
       </view>
 
+      <view class="page-section-title">课程简介</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="courseDescription" placeholder="请输入课程简介" style="height: 5em" maxlength="-1" />
+                </view>
+            </view>
+        </view>
+
       <view class="page-section page-section-gap">
-        <view class="page-section-title">课程简介</view>
+        <view class="page-section-title">领读人名称</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd" style="margin: 30rpx 0" >
-              <input class="weui-input" name="description" placeholder="请输入课程简介" />
+              <input class="weui-input" name="instructor" placeholder="请输入领读人的姓名" />
             </view>
           </view>
         </view>
       </view>
+
+      <view class="page-section-title">领读人简介</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" name="instructorDescription" placeholder="请输入领读人简介" style="height: 5em" maxlength="-1" />
+                </view>
+            </view>
+        </view>
 
       <view class="page-section page-section-gap">
         <view class="page-section-title">课程年份</view>
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd" style="margin: 30rpx 0" >
-              <input class="weui-input" name="year" placeholder="请输入课程开展的年份" />
+              <input class="weui-input" name="year" placeholder="请输入课程开展的年份" value="2020" />
             </view>
           </view>
         </view>
@@ -78,10 +85,50 @@
       </view>
 
       <view class="btn-area">
-        <button style="margin: 30rpx 0" type="primary" formType="submit">提交回答</button>
+        <button style="margin: 30rpx 0" type="primary" formType="submit">提交课程</button>
       </view>
     </form>
   </view>
-
 </view>
 
+
+<!-- an attempt to make this page prettier; someone could carry it out in the future with weui components -->
+
+  <!-- <mp-cells title="夏令营地点">
+      <mp-checkbox-group prop="radio" multi="{{false}}" name="venue">
+          <mp-checkbox label="长沙营" value="长沙"></mp-checkbox>
+          <mp-checkbox label="贵阳营" value="贵阳"></mp-checkbox>
+          <mp-checkbox label="凯里营" value="凯里"></mp-checkbox>
+          <mp-checkbox label="烟台营" value="烟台"></mp-checkbox>
+      </mp-checkbox-group>
+  </mp-cells>
+
+  <mp-cells title="夏令营时间">
+      <mp-checkbox-group prop="checkbox" multi="{{false}}" name="time">
+          <mp-checkbox label="上午" value="AM"></mp-checkbox>
+          <mp-checkbox label="下午" value="PM"></mp-checkbox>
+      </mp-checkbox-group>
+  </mp-cells>
+
+  <view class="weui-cells__title">文本框</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="请输入文本" />
+          </view>
+      </view>
+  </view>
+
+  <view class="weui-cells__title">文本域</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" />
+              <view class="weui-textarea-counter">0/200</view>
+          </view>
+      </view>
+  </view>
+
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="formSubmit">确定</button>
+  </view> -->
