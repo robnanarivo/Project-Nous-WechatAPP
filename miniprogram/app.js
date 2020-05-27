@@ -16,5 +16,23 @@ App({
     }
 
     this.globalData = {}
+
+    let app = this;
+    getOpenId();
+    
+    // 通过微信云函数获取Open ID
+    function getOpenId() {
+      wx.cloud.callFunction({
+        name: "login",
+        data: {},
+        success: res => {
+          console.log("Open ID is", res.result.openid);
+          app.globalData.openid = res.result.openid;
+        },
+        fail: err => {
+          console.error("Failed to get open ID", err);
+        },
+      });
+    }
   }
 })
