@@ -1,6 +1,6 @@
 <!--miniprogram/pages/admission/admission.wxml-->
 <view class="page">
-  <view class="page__bd">
+  <view wx:if="{{!loading}}" class="page__bd">
     <mp-cells ext-class="my-cells" title="所有申请">
       <view wx:for="{{apps}}" wx:key="unique">
         <mp-cell link url="../appView/appView?id={{item._id}}">
@@ -9,7 +9,9 @@
         </mp-cell>
       </view>
     </mp-cells>
-    <mp-loading show="{{loading}}"></mp-loading>
+  </view>
+  <view wx:if="{{loading}}" class="custom-loading">
+    <mp-loading></mp-loading>
   </view>
 </view>
 

@@ -1,1 +1,19 @@
 /* miniprogram/pages/appView/appView.wxss */
+
+.button-holder {
+  margin-top: 40rpx;
+}
+
+.accept-button {
+  margin: 5rpx;
+}
+
+.reject-button {
+  margin: 5rpx;
+  background: red; 
+  color: white;
+}
+
+.reviewed-button {
+  margin-top: 40rpx;
+}

@@ -6,24 +6,91 @@ Page({
    */
   data: {
     app: {},
-    loading: true
+    loading: true,
+    showDialog: false,
+    accepting: false,
+    acceptDialogBtns: [{text: '取消'}, {text: '录取'}],
+    rejectDialogBtns: [{text: '取消'}, {text: '拒绝'}]
+  },
+
+  tapAcceptButton: function() {
+    this.setData({
+      showDialog: true,
+      accepting: true
+    })
+  },
+
+  tapRejectButton: function() {
+    this.setData({
+      showDialog: true,
+      accepting: false
+    })
+  },
+
+  tapAcceptDialog: function(e) {
+    if (e.detail.index == 1) {
+      const db = wx.cloud.database();
+      const studentApp = db.collection("studentApp");
+      var that = this;
+      console.log(this.data.app._id);
+      studentApp.doc(this.data.app._id).update({
+        data: {
+          reviewed: true,
+          accepted: true
+        },
+        success: function(res) {
+          that.setData({
+            "app.reviewed": true,
+            "app.accepted": true,
+            showDialog: false
+          });
+        }
+      })
+    } else {
+      this.setData({
+        showDialog: false
+      });
+    }
+  },
+
+  tapRejectDialog: function(e) {
+    if (e.detail.index == 1) {
+      const db = wx.cloud.database();
+      const studentApp = db.collection("studentApp");
+      var that = this;
+      console.log(this.data.app._id);
+      studentApp.doc(this.data.app._id).update({
+        data: {
+          reviewed: true,
+          accepted: false
+        },
+        success: function(res) {
+          that.setData({
+            "app.reviewed": true,
+            "app.accepted": false,
+            showDialog: false
+          });
+        }
+      })
+    } else {
+      this.setData({
+        showDialog: false
+      });
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("asdfasdfasdf");
     const db = wx.cloud.database();
     const studentApp = db.collection("studentApp");
     const appId = options.id;
     var that = this;
-    studentApp.where({
-      _id: appId
-    }).get({
+    studentApp.doc(appId).get({
       success: function(res) {
         that.setData({
-          app: res.data[0],
+          app: res.data,
           loading: false
         });
       }

@@ -1,11 +1,24 @@
 <!--miniprogram/pages/appView/appView.wxml-->
 <view class="page">
-  <view class="page__bd">
+  <view class="page__bd" wx:if="{{!loading}}">
     <mp-cells ext-class="my-cells" title="申请">
       <mp-cell title="姓名：{{app.name}}"></mp-cell>
       <mp-cell title="性别：{{app.gender}}"></mp-cell>
       <mp-cell title="为什么要来格致计划：{{app.whyProjectNous}}"></mp-cell>
     </mp-cells>
-    <mp-loading show="{{loading}}"></mp-loading>
+    <view class="button-holder" wx:if="{{!app.reviewed}}">
+      <button class="weui-btn accept-button" type="primary" bindtap="tapAcceptButton">录取</button>
+      <button class="weui-btn reject-button" bindtap="tapRejectButton">拒绝</button>
+    </view>
+    <button class="weui-btn reviewed-button" type="secondary" wx:if="{{app.reviewed}}">{{app.accepted ? "已录取" : "已拒绝"}}</button>
+    <mp-dialog title="录取" show="{{showDialog && accepting}}" buttons="{{acceptDialogBtns}}" bindbuttontap="tapAcceptDialog">
+      <view>是否确定录取该学生？</view>
+    </mp-dialog>
+    <mp-dialog title="拒绝" show="{{showDialog && !accepting}}" buttons="{{rejectDialogBtns}}" bindbuttontap="tapRejectDialog">
+      <view>是否确定拒绝该学生？</view>
+    </mp-dialog>
+  </view>
+  <view wx:if="{{loading}}" class="custom-loading">
+    <mp-loading></mp-loading>
   </view>
 </view>
