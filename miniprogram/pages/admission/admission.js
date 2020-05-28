@@ -7,6 +7,8 @@ Page({
   data: {
     apps: [],
     loading: true,
+    totalBatches: 0,
+    batchCount: 0,
   },
 
   /**
@@ -16,11 +18,19 @@ Page({
     const db = wx.cloud.database();
     const studentApp = db.collection("studentApp");
     var that = this;
-    studentApp .get({
+    studentApp.count({
+      success: function(res) {
+        that.setData({
+          totalBatches: Math.ceil(res.total / 20)
+        });
+      }
+    });
+    studentApp.get({
       success: function(res) {
         that.setData({
           apps: res.data,
-          loading: false
+          loading: false,
+          batchCount: 1
         });
       }
     })
@@ -64,7 +74,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (this.data.batchCount < this.data.totalBatches) {
+      const db = wx.cloud.database();
+      const studentApp = db.collection("studentApp");
+      var that = this;
+      studentApp.skip(20 * this.data.batchCount).get({
+        success: function(res) {
+          that.setData({
+            apps: that.data.apps.concat(res.data),
+            batchCount: that.data.batchCount + 1
+          });
+        }
+      })
+    }
   },
 
   /**
