@@ -8,6 +8,7 @@
   </mp-cells>
   <mp-loading show="{{loading}}"></mp-loading>
   <view class="weui-btn-area">
+    <!-- TODO: user cannot continue if nothing is chosen -->
     <button class="weui-btn" type="primary" bindtap="next">继续</button>
   </view>
 </block>
@@ -21,6 +22,7 @@
   <mp-loading show="{{loading}}"></mp-loading>
   <view class="weui-btn-area">
     <button class="weui-btn" type="primary" bindtap="back">返回</button>
+    <!-- TODO: user cannot submit if nothing is chosen -->
     <button class="weui-btn" type="primary" bindtap="submit">提交</button>
   </view>
 </block>

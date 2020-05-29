@@ -45,10 +45,10 @@ Page({
     showTopTips: false,
 
     venues: [
-        {name: '长沙', value: 'changsha'},
-        {name: '贵阳', value: 'guiyang'},
-        {name: '凯里', value: 'kaili'},
-        {name: '烟台', value: 'yantai'}
+        {name: '长沙', value: '长沙'},
+        {name: '贵阳', value: '贵阳'},
+        {name: '凯里', value: '凯里'},
+        {name: '烟台', value: '烟台'}
     ],
 
     participation: [

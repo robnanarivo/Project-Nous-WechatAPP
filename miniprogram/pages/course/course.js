@@ -26,18 +26,20 @@ Page({
     function setVenueCourse(page, openid) {
       studentApp.where({
         _openid: openid,
-      }).get({
-        success: res => {
-          console.log("Successfully getting student", res.data[0].name);
-          page.setData({
-            venue: res.data[0].venue,
-          });
-          setCourse(page);
-        },
-        fail: err => {
-          console.error("Failed to get venue", err)
-        },
-      });
+      })
+        .limit(1)
+        .get({
+          success: res => {
+            console.log("Successfully getting student", res.data[0].name);
+            page.setData({
+              venue: res.data[0].venue,
+            });
+            setCourse(page);
+          },
+          fail: err => {
+            console.error("Failed to get venue", err)
+          },
+        });
     }
 
     // 获取课程列表，在setVenueCourse中被调用
