@@ -23,16 +23,7 @@ Page({
 
     showTopTips: false,
 
-<<<<<<< HEAD
-    venues: [
-        {name: '长沙', value: '长沙'},
-        {name: '贵阳', value: '贵阳'},
-        {name: '凯里', value: '凯里'},
-        {name: '烟台', value: '烟台'}
-    ],
-=======
     venues: ['长沙', '贵阳', '凯里', '烟台'],
->>>>>>> c4a877d91e145421f3ace6a67d3600f672c72e39
 
     participations: ['是', '否', '不确定'],
 
