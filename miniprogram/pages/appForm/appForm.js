@@ -1,23 +1,5 @@
 // pages/appForm/appForm.js
 
-// Page({
-
-//   appData: {
-//     hasFinishedFirst: false,
-//     name: "",
-//     gender: "",
-//     school: "",
-//     wechatID: "",
-//     dial: "",
-//     hasFinishedSecond: false,
-//     venue: "",
-//     guaranteeParticipation: false,
-//     howNous: [],
-//     whatFromNous: "",
-//     hasFinishedThird: false,
-//     whyNous: "",
-  // },
-
   // onShareAppMessage() {
   //   return {
   //     title: 'form',
@@ -25,45 +7,40 @@
   //   }
   // },
 
-
-
 Page({
   // mixins: [require('../../mixin/themeChanged')],
   data: {
-
     name: "",
     gender: "",
     school: "",
     birthdate: "",
     wechatID: "",
     dial: "",
-    venue: "",
-    guaranteeParticipation: false,
+    venue: undefined,
+    participation: undefined,
     howNous: [],
     whyNous: "",
 
     showTopTips: false,
 
+<<<<<<< HEAD
     venues: [
         {name: '长沙', value: '长沙'},
         {name: '贵阳', value: '贵阳'},
         {name: '凯里', value: '凯里'},
         {name: '烟台', value: '烟台'}
     ],
+=======
+    venues: ['长沙', '贵阳', '凯里', '烟台'],
+>>>>>>> c4a877d91e145421f3ace6a67d3600f672c72e39
 
-    participation: [
-        {name: '是', value: 'yes'},
-        {name: '否', value: 'no'},
-        {name: '不确定', value: 'notSure'},
-    ],
+    participations: ['是', '否', '不确定'],
 
     how: [
-          {name: '微信公众号', value: '0', checked: true},
+          {name: '微信公众号', value: '0'},
           {name: '父母推荐', value: '1'},
           {name: '朋友推荐', value: '2'}
     ],
-
-    date: "2000-01-01",
 
     isAgree: false
   },
@@ -79,48 +56,72 @@ Page({
           });
       }, 3000);
   },
-  radioChange: function (e) {
-      console.log('radio发生change事件，携带value值为：', e.detail.value);
 
-      var radioItems = this.data.radioItems;
-      for (var i = 0, len = radioItems.length; i < len; ++i) {
-          radioItems[i].checked = radioItems[i].value == e.detail.value;
-      }
-
-      this.setData({
-          radioItems: radioItems
-      });
+  bindDateChange: function (e) {
+    this.setData({
+        birthdate: e.detail.value
+    })
   },
-  checkboxChange: function (e) {
-      console.log('checkbox发生change事件，携带value值为：', e.detail.value);
 
-      var checkboxItems = this.data.checkboxItems, values = e.detail.value;
-      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-          checkboxItems[i].checked = false;
+  bindVenueChange: function (e) {
+    this.setData({
+        venue: e.detail.value
+    })
+  },
+
+  bindParticipationChange: function (e) {
+    this.setData({
+        participation: e.detail.value
+    })
+  },
+
+//   venueChange: function (e) {
+//       console.log('venue发生change事件，携带value值为：', e.detail.value);
+
+//       var venueItems = this.data.venues;
+//       for (var i = 0, len = venueItems.length; i < len; ++i) {
+//           venueItems[i].checked = venueItems[i].value == e.detail.value;
+//       }
+
+//       this.setData({
+//           venues: venueItems
+//       });
+//   },
+
+//   participationChange: function (e) {
+//     console.log('participation发生change事件，携带value值为：', e.detail.value);
+
+//     var participationItems = this.data.participation;
+//     for (var i = 0, len = participationItems.length; i < len; ++i) {
+//         participationItems[i].checked = participationItems[i].value == e.detail.value;
+//     }
+
+//     this.setData({
+//         participation: participationItems
+//     });
+// },
+
+  howChange: function (e) {
+      console.log('how发生change事件，携带value值为：', e.detail.value);
+
+      var howItems = this.data.how, values = e.detail.value;
+      for (var i = 0, lenI = howItems.length; i < lenI; ++i) {
+          howItems[i].checked = false;
 
           for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(checkboxItems[i].value == values[j]){
-                  checkboxItems[i].checked = true;
+              if(howItems[i].value == values[j]){
+                  howItems[i].checked = true;
                   break;
               }
           }
       }
 
       this.setData({
-          checkboxItems: checkboxItems
+          how: howItems
       });
-  },
-  bindDateChange: function (e) {
-      this.setData({
-          date: e.detail.value
-      })
   },
 
-  bindAgreeChange: function (e) {
-      this.setData({
-          isAgree: !!e.detail.value.length
-      });
-  },
+
 
 
   formSubmit(e) {
