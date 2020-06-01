@@ -5,8 +5,10 @@ Page({
     const db = wx.cloud.database();
     const courseList = db.collection("courseList");
 
+    let toUpload = e.detail.value
+    toUpload.enrolledStudents = []
     courseList.add({
-      data: e.detail.value,
+      data: toUpload,
       success: function(res) {
         console.log(res);
       }
