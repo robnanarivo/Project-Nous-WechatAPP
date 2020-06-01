@@ -7,7 +7,7 @@
 <block wx:if="{{loading === false && finishedAM === false}}">
   <mp-cells title="上午课程列表">
     <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
-      <mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID]}}" checked="{{item.courseID === courseSelected.AM[1]}}"></mp-checkbox> 
+      <mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.AM.courseID}}"></mp-checkbox>
     </mp-checkbox-group>
   </mp-cells>
   <view class="weui-btn-area">
@@ -18,7 +18,7 @@
 <block wx:if="{{finishedAM && submitSuccess === false}}">
   <mp-cells title="下午课程列表">
     <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
-      <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID]}}"></mp-checkbox>
+      <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}"></mp-checkbox>
     </mp-checkbox-group>
   </mp-cells>
   <view class="weui-btn-area">
@@ -28,8 +28,8 @@
 
   <mp-dialog title="提交选课" show="{{isSubmitting}}" buttons="{{submitDialogBtns}}" bindbuttontap="tapDialogConfirm">
     <view>你选的课程是：</view>
-    <view>上午：{{courseSelected.AM[0]}}</view>
-    <view>下午：{{courseSelected.PM[0]}}</view>
+    <view>上午：{{courseSelected.AM.courseName}}</view>
+    <view>下午：{{courseSelected.PM.courseName}}</view>
   </mp-dialog>
 
 </block>
@@ -37,13 +37,13 @@
 <!-- TODO: work on return message -->
 <block wx:if="{{submitSuccess}}">
   <mp-msg type="success" title="选课成功">
-    <view slot="desc">内容详情，可根据实际需要安排，如果换行则不超过规定长度，居中展现</view>
+    <view slot="desc">选课已经完成，再次感谢你对格致计划的信任和支持！</view>
     <view slot="extend">
         <view>1. 说明1</view>
         <view>2. 说明2</view>
     </view>
     <view slot="handle">
-        <button class="weui-btn" type="primary">确认</button>
+        <button class="weui-btn" type="primary" bindtap="tapReturnToStatus">返回状态查询页面</button>
     </view>
   </mp-msg>
 </block>
