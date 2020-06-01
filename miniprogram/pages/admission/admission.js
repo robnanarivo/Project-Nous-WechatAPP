@@ -25,8 +25,9 @@ Page({
         });
       }
     });
-    studentApp.get({
+    studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').get({
       success: function(res) {
+        console.log(res);
         that.setData({
           apps: res.data,
           loading: false,
@@ -78,7 +79,7 @@ Page({
       const db = wx.cloud.database();
       const studentApp = db.collection("studentApp");
       var that = this;
-      studentApp.skip(20 * this.data.batchCount).get({
+      studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').skip(20 * this.data.batchCount).get({
         success: function(res) {
           that.setData({
             apps: that.data.apps.concat(res.data),
