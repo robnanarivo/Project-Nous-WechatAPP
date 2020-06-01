@@ -1,4 +1,5 @@
 <!--miniprogram/pages/admission/admission.wxml-->
+
 <view class="page">
   <view wx:if="{{!loading}}" class="page__bd">
     <mp-cells ext-class="my-cells" title="所有申请">
