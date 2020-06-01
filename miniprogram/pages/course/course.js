@@ -4,15 +4,25 @@ const app = getApp();
 
 Page({
   data: {
+    // course info
     courseInfoAM: [], //上午可选的课
     courseInfoPM: [], //下午可选的课
     courseSelected: {
-      AM: null,
-      PM: null,
-    }, //已选课程
-    finishedAM: false,
+      AM: [],
+      PM: [],
+    }, //已选课程，数组第一个值是课程名字，第二个是课程ID
+
+    // student info
     venue: null, //读书营地点
+    studentName: null,
+
+    finishedAM: false,
     loading: true,
+    isDisabledNext: true,
+    isDisabledSubmit: true,
+    isSubmitting: false,
+    submitDialogBtns: [{text: '取消'}, {text: '确定'}],
+    submitSuccess: false,
   },
 
   onLoad: function (options) {
@@ -33,6 +43,7 @@ Page({
             console.log("Successfully getting student", res.data[0].name);
             page.setData({
               venue: res.data[0].venue,
+              studentName: res.data[0].name,
             });
             setCourse(page);
           },
@@ -67,47 +78,65 @@ Page({
 
   selected(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
+    let selected = e.detail.value.split(",");
 
     if (this.data.finishedAM === false) {
       this.setData({
-        "courseSelected.AM": e.detail.value,
+        "courseSelected.AM": selected,
+        isDisabledNext: false,
       });
     } else {
       this.setData({
-        "courseSelected.PM": e.detail.value,
+        "courseSelected.PM": selected,
+        isDisabledSubmit: false,
       });
     }
   },
 
-  next() {
+  tapNext() {
     this.setData({
       finishedAM: true
     });
   },
 
-  back() {
-    this.setData(
-      {
+  tapBack() {
+    this.setData({
         finishedAM: false,
         "courseSelected.PM": null,
-      }
-    );
+      });
   },
 
-  submit(e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
+  submitting() {
+    this.setData({
+      isSubmitting: true,
+    });
+  },
 
-    const db = wx.cloud.database();
-    const courseSelection = db.collection("courseSelection");
+  tapDialogConfirm(e) {
+    if (e.detail.index === 1) {
+    const courseSelection = wx.cloud.database().collection("courseSelection");
+    let page = this;
 
     courseSelection.add({
-      data: e.detail.value,
+      data: {
+        studentName: this.data.studentName,
+        courseSelected: {
+          AM: this.data.courseSelected.AM[1],
+          PM: this.data.courseSelected.PM[1],
+        },
+      },
+      // TODO: 跳转确认page
       success: function(res) {
+        page.setData({
+          submitSuccess: true,
+        });
         console.log(res);
       }
-    })
-    wx.reLaunch({
-      url: '../portal/portal',
-    })
+    });
+    } else {
+      this.setData({
+        isSubmitting: false,
+      });
+    }
   },
 })
