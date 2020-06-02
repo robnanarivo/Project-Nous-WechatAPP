@@ -5,8 +5,8 @@ const app = getApp();
 Page({
   data: {
     // course info
-    courseInfoAM: [], //上午可选的课
-    courseInfoPM: [], //下午可选的课
+    courseInfoAM: [], //上午可选的课(已选人数小于15人)
+    courseInfoPM: [], //下午可选的课(已选人数小于15人)
     courseSelected: {
       AM: {
         courseName: null,
@@ -18,7 +18,7 @@ Page({
         courseID: null,
         _id: null,
       },
-    }, //已选课程，数组第一个值是课程名字，第二个是课程ID，第三个是数据
+    }, //已选课程，对象的第一个性质是课程名字，第二个是课程ID，第三个是数据
 
     // student info
     venue: null, //读书营地点
