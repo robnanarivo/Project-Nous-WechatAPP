@@ -1,94 +1,96 @@
 // pages/status/status.js
-const db = wx.cloud.database({});
-const studentApp = db.collection('studentApp');
-var openid = 'oWwqY5FY1ThckBypGr83wjSVKh1U';
 
-function checkstatus(accepted){
-  if(accepted == true){
-    return 1;
-  }
-  else if(accepted == false){
-    return 2;
-  }
-  else{
-    return 0;
-  }
-}
-
-
+const app = getApp();
 
 Page({
+
   /**
-   * 页面的初始数据
+   * Page initial data
    */
   data: {
-  
+    // application details
+    studentName: null,
+
+    // application status
+    accepted: null,
+    reviewed: null,
+
+    // course selected
+    courseSelected: null,
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    var that = this;
-    db.collection('studentApp').where({
-      _openid: openid
+    const studentApp = wx.cloud.database().collection("studentApp");
+    let page = this;
+
+    studentApp.where({
+      _openid: app.globalData.openid,
     })
-    .get({
-      success(res){
-        that.setData({
-          Status: checkstatus(res.data[0].accepted)
-        })
-      }
-    })
+      .limit(1)
+      .get({
+        success: res => {
+          console.log("Successfully getting student", res.data[0].name);
+          page.setData({
+            studentName: res.data[0].name,
+            reviewed: res.data[0].reviewed,
+            accepted: res.data[0].accepted,
+          });
+        },
+        fail: err => {
+          console.error("Failed to get info", err)
+        },
+      });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * Lifecycle function--Called when page is initially rendered
    */
   onReady: function () {
 
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * Lifecycle function--Called when page show
    */
   onShow: function () {
 
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * Lifecycle function--Called when page hide
    */
   onHide: function () {
 
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * Lifecycle function--Called when page unload
    */
   onUnload: function () {
 
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
 
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * Called when page reach bottom
    */
   onReachBottom: function () {
 
   },
 
   /**
-   * 用户点击右上角分享
+   * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
 
   }
 })
-
