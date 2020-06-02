@@ -23,6 +23,7 @@ Page({
     // student info
     venue: null, //读书营地点
     studentName: null,
+    studentAppID: null,
 
     finishedAM: false,
     loading: true,
@@ -52,6 +53,7 @@ Page({
             page.setData({
               venue: res.data[0].venue,
               studentName: res.data[0].name,
+              studentAppID: res.data[0]._id,
             });
             setCourse(page);
           },
@@ -138,7 +140,10 @@ Page({
 
       courseList.doc(this.data.courseSelected.AM._id).update({
         data: {
-          enrolledStudents: _.push(page.data.studentName)
+          enrolledStudents: _.push({
+            studentName: page.data.studentName,
+            studentAppID: page.data.studentAppID,
+          })
         },
         success: function(res) {
           console.log(res.data)
@@ -147,7 +152,10 @@ Page({
 
       courseList.doc(this.data.courseSelected.PM._id).update({
         data: {
-          enrolledStudents: _.push(page.data.studentName)
+          enrolledStudents: _.push({
+            studentName: page.data.studentName,
+            studentAppID: page.data.studentAppID,
+          })
         },
         success: function(res) {
           console.log(res.data)
