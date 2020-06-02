@@ -18,11 +18,11 @@
 <block wx:if="{{finishedAM && submitSuccess === false}}">
   <mp-cells title="下午课程列表">
     <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
-      <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}"></mp-checkbox>
+      <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.PM.courseID}}"></mp-checkbox>
     </mp-checkbox-group>
   </mp-cells>
   <view class="weui-btn-area">
-    <button class="weui-btn" type="primary" bindtap="tapBack">返回</button>
+    <button class="weui-btn back-button" bindtap="tapBack">返回</button>
     <button class="weui-btn" type="primary" bindtap="submitting" disabled="{{isDisabledSubmit}}">提交</button>
   </view>
 

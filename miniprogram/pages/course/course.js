@@ -120,7 +120,6 @@ Page({
   tapBack() {
     this.setData({
         finishedAM: false,
-        "courseSelected.PM": null,
       });
   },
 
