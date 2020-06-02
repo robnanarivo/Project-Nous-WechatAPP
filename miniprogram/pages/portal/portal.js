@@ -8,7 +8,7 @@ Page({
    * Page initial data
    */
   data: {
-    IsNewuser: true
+    isNewUser: true
   },
 
   /**
