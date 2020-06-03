@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-badge": "/miniprogram_npm/weui-miniprogram/badge/badge",
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+  }
 }

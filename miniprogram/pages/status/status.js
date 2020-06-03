@@ -10,6 +10,7 @@ Page({
   data: {
     // application details
     studentName: null,
+    venue: null,
 
     // application status
     accepted: null,
@@ -17,6 +18,9 @@ Page({
 
     // course selected
     courseSelected: null,
+
+    // page info
+    loading: true,
   },
 
   /**
@@ -35,8 +39,10 @@ Page({
           console.log("Successfully getting student", res.data[0].name);
           page.setData({
             studentName: res.data[0].name,
+            venue: res.data[0].venue,
             reviewed: res.data[0].reviewed,
             accepted: res.data[0].accepted,
+            loading: false,
           });
         },
         fail: err => {
