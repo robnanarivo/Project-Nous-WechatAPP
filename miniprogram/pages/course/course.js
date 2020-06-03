@@ -25,6 +25,7 @@ Page({
     studentName: null,
     studentAppID: null,
 
+    // page info
     finishedAM: false,
     loading: true,
     isDisabledNext: true,

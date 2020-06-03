@@ -4,7 +4,7 @@
     <mp-loading></mp-loading>
   </view>
 
-<block wx:if="{{loading === false && finishedAM === false}}">
+<block wx:if="{{!loading && !finishedAM}}">
   <mp-cells title="上午课程列表">
     <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
       <mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.AM.courseID}}"></mp-checkbox>
@@ -15,7 +15,7 @@
   </view>
 </block>
 
-<block wx:if="{{finishedAM && submitSuccess === false}}">
+<block wx:if="{{finishedAM && !submitSuccess}}">
   <mp-cells title="下午课程列表">
     <mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
       <mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.PM.courseID}}"></mp-checkbox>
