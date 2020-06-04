@@ -8,14 +8,28 @@ Page({
    * Page initial data
    */
   data: {
-    isNewUser: true
+    isNewUser: true,
+    loading: true,
   },
 
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
-    
+  onLoad: async function (options) {
+    wx.cloud.callFunction({
+      name: "login",
+      data: {},
+      success: res => {
+        console.log("Open ID is", res.result.openid);
+        app.globalData.openid = res.result.openid;
+        this.setData({
+          loading: false,
+        })
+      },
+      fail: err => {
+        console.error("Failed to get open ID", err);
+      },
+    });
   },
 
   /**

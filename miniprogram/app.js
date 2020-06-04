@@ -1,7 +1,21 @@
 //app.js
 App({
+  // 通过微信云函数获取Open ID
+  onGetOpenId: async function(app) {
+    wx.cloud.callFunction({
+      name: "login",
+      data: {},
+      success: res => {
+        console.log("Open ID is", res.result.openid);
+        app.globalData.openid = res.result.openid;
+      },
+      fail: err => {
+        console.error("Failed to get open ID", err);
+      },
+    });
+  },
+  
   onLaunch: function () {
-    
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -15,24 +29,12 @@ App({
       })
     }
 
-    this.globalData = {}
-
-    let app = this;
-    getOpenId();
-    
-    // 通过微信云函数获取Open ID
-    function getOpenId() {
-      wx.cloud.callFunction({
-        name: "login",
-        data: {},
-        success: res => {
-          console.log("Open ID is", res.result.openid);
-          app.globalData.openid = res.result.openid;
-        },
-        fail: err => {
-          console.error("Failed to get open ID", err);
-        },
-      });
+    this.globalData = {
+      openid: null,
     }
-  }
+
+    // Moved this part to Portal page
+    // let app = this;
+    // this.onGetOpenId(app);
+  },
 })

@@ -1,46 +1,53 @@
 <!--pages/portal/portal.wxml-->
-<view class="container">
 
-  <!-- Application Form -->
-  <view wx:if="{{isNewUser == true}}" class="uploader">
-    <navigator url="../appForm/appForm" open-type="navigate" class="uploader-text">
-      <text>我要申请</text>
-    </navigator>
-  </view>
-
-  <!-- Check status -->
-  <view wx:if="{{isNewUser == false}}" class="uploader">
-    <navigator url="../status/status" open-type="navigate" class="uploader-text">
-      <text>查看申请</text>
-    </navigator>
-  </view>
-
-  <!-- Admin -->
-  <view class="uploader">
-    <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
-      <text>查看申请</text>
-    </navigator>
-  </view>
-
-  <!-- Add a Course -->
-  <view class="uploader">
-    <navigator url="../addCourse/addCourse" open-type="navigate" class="uploader-text">
-      <text>发布课程</text>
-    </navigator>
-  </view>
-
-  <!-- Course -->
-  <view class="uploader">
-    <navigator url="../course/course" open-type="navigate" class="uploader-text">
-      <text>(临时)进入选课页面</text>
-    </navigator>
-  </view>
-
-  <!-- Status -->
-  <view class="uploader">
-    <navigator url="../status/status" open-type="navigate" class="uploader-text">
-      <text>(临时)查看申请</text>
-    </navigator>
-  </view>
-
+<view wx:if="{{loading}}" class="custom-loading">
+	<mp-loading></mp-loading>
 </view>
+
+<block wx:if="{{!loading}}">
+  <view class="container">
+
+    <!-- Application Form -->
+    <view wx:if="{{isNewUser === true}}" class="uploader">
+      <navigator url="../appForm/appForm" open-type="navigate" class="uploader-text">
+        <text>我要申请</text>
+      </navigator>
+    </view>
+
+    <!-- Check status -->
+    <view wx:if="{{isNewUser === false}}" class="uploader">
+      <navigator url="../status/status" open-type="navigate" class="uploader-text">
+        <text>查看申请</text>
+      </navigator>
+    </view>
+
+    <!-- Admin -->
+    <view class="uploader">
+      <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
+        <text>管理员查看申请</text>
+      </navigator>
+    </view>
+
+    <!-- Add a Course -->
+    <view class="uploader">
+      <navigator url="../addCourse/addCourse" open-type="navigate" class="uploader-text">
+        <text>管理员发布课程</text>
+      </navigator>
+    </view>
+
+    <!-- Course -->
+    <view class="uploader">
+      <navigator url="../course/course" open-type="navigate" class="uploader-text">
+        <text>(临时)进入选课页面</text>
+      </navigator>
+    </view>
+
+    <!-- Status -->
+    <view class="uploader">
+      <navigator url="../status/status" open-type="navigate" class="uploader-text">
+        <text>(临时)查看申请</text>
+      </navigator>
+    </view>
+
+  </view>
+</block>
