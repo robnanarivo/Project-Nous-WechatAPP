@@ -1,14 +1,6 @@
 // pages/appForm/appForm.js
 
-  // onShareAppMessage() {
-  //   return {
-  //     title: 'form',
-  //     path: 'page/component/pages/form/form'
-  //   }
-  // },
-
 Page({
-  // mixins: [require('../../mixin/themeChanged')],
   data: {
     name: "",
     gender: "",
@@ -18,23 +10,56 @@ Page({
     dial: "",
     venue: undefined,
     participation: undefined,
+    isLocal: undefined,
     howNous: [],
     whyNous: "",
+    
+    formData: {
 
-    showTopTips: false,
+    },
 
     venues: ['长沙', '贵阳', '凯里', '烟台'],
 
     participations: ['是', '否', '不确定'],
 
+    isLocalItems: ['是', '否'],
+
     how: [
           {name: '微信公众号', value: '0'},
           {name: '父母推荐', value: '1'},
-          {name: '朋友推荐', value: '2'}
+          {name: '朋友推荐', value: '2'},
+          {name: '其他', value: '3'},
     ],
 
-    isAgree: false
+    showTopTips: false,
+
   },
+
+  rules: [{
+    name: 'name',
+    rules: {required: true, message: '你还没有填写姓名'},
+  }, {
+    name: 'school',
+    rules: {required: true, message: '你还没有填写学校'},
+  }, {
+    name: 'birthdate',
+    rules: {required: true, message: '你还没有填写生日'},
+  }, {
+    name: 'mobile',
+    rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
+  }, {
+    name: 'wechatID',
+    rules: {required: true, message: '你还没有填写微信号'},
+  }, {
+    name: 'venue',
+    rules: {required: true, message: '你还没有选择报名营地'},
+  }, {
+    name: 'participation',
+    rules: {required: true, message: '你还没有回答完报名信息'},
+  }, {
+    name: 'whyNous',
+    rules: [{required: true, message: '你还没有填写申请问题'},{rangelength: [150, 500], message: '回答长度超出字数范围'}]
+  }],
 
   showTopTips: function(){
       var that = this;
@@ -47,6 +72,8 @@ Page({
           });
       }, 3000);
   },
+
+
 
   bindDateChange: function (e) {
     this.setData({
@@ -66,31 +93,11 @@ Page({
     })
   },
 
-//   venueChange: function (e) {
-//       console.log('venue发生change事件，携带value值为：', e.detail.value);
-
-//       var venueItems = this.data.venues;
-//       for (var i = 0, len = venueItems.length; i < len; ++i) {
-//           venueItems[i].checked = venueItems[i].value == e.detail.value;
-//       }
-
-//       this.setData({
-//           venues: venueItems
-//       });
-//   },
-
-//   participationChange: function (e) {
-//     console.log('participation发生change事件，携带value值为：', e.detail.value);
-
-//     var participationItems = this.data.participation;
-//     for (var i = 0, len = participationItems.length; i < len; ++i) {
-//         participationItems[i].checked = participationItems[i].value == e.detail.value;
-//     }
-
-//     this.setData({
-//         participation: participationItems
-//     });
-// },
+  bindIsLocalChange: function (e) {
+    this.setData({
+        isLocal: e.detail.value
+    })
+  },
 
   howChange: function (e) {
       console.log('how发生change事件，携带value值为：', e.detail.value);
@@ -112,7 +119,12 @@ Page({
       });
   },
 
-
+  formInputChange(e) {
+    const {field} = e.currentTarget.dataset
+    this.setData({
+        [`formData.${field}`]: e.detail.value
+    })
+},
 
 
   formSubmit(e) {
@@ -129,6 +141,27 @@ Page({
     wx.reLaunch({
       url: '../portal/portal',
     })
-  }
+  },
 
-});
+  submitForm() {
+    this.selectComponent('#form').validate((valid, errors) => {
+        console.log('valid', valid, errors)
+        if (!valid) {
+            const firstError = Object.keys(errors)
+            if (firstError.length) {
+                this.setData({
+                    error: errors[firstError[0]].message
+                })
+
+            }
+        } else {
+
+            this.formSubmit
+            wx.showToast({
+                title: '提交成功'
+            })
+        }
+    })
+}
+
+})

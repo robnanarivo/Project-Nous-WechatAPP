@@ -6,5 +6,7 @@
     "mp-checkbox": "/miniprogram_npm/weui-miniprogram/checkbox/checkbox",
     "mp-checkbox-group": "/miniprogram_npm/weui-miniprogram/checkbox-group/checkbox-group",
     "mp-form": "/miniprogram_npm/weui-miniprogram/form/form"
+    
+
   }
 }

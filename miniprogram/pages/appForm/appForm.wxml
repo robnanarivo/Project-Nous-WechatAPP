@@ -1,147 +1,65 @@
 <!--pages/appForm/appForm.wxml-->
 
-<view class="page" data-weui-theme="{{theme}}">
-    <view class="page__hd">
-        <view class="page__title">格致计划申请表</view>
-    </view>
-    <view class="page__bd">
-        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<mp-form-page title="2020格致计划学生申请表">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    </mp-form>
 
-        <view class="weui-cells__title">基本信息</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">姓名</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入姓名"/>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">学校</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入学校名称"/>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">生日</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <picker mode="date" value="{{birthdate}}" bindchange="bindDateChange">
-                        <view class="weui-input">{{birthdate}}</view>
-                    </picker>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">手机</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入手机号"/>
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">微信号</view>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" placeholder="请输入微信号"/>
-                </view>
-            </view>
-        </view>
+    <mp-cells title="个人信息" >
+        <mp-cell prop="name" title="姓名" ext-class="">
+            <input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名"/>
+        </mp-cell>
+        <mp-cell prop="school" title="学校" ext-class="">
+            <input bindinput="formInputChange" data-field="school" class="weui-input" placeholder="请输入学校名称"/>
+        </mp-cell>
+        <mp-cell prop="birthdate" title="生日" ext-class="">
+            <picker mode="date" value="{{birthdate}}" bindchange="bindDateChange">
+                <view class="weui-input">{{birthdate}}</view>
+            </picker>
+        </mp-cell>
+        <mp-cell prop="mobile" title="手机号" ext-class="">
+            <input bindinput="formInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号"/>
+        </mp-cell>
+        <mp-cell prop="wechatID" title="微信号" ext-class="">
+            <input bindinput="formInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号"/>
+        </mp-cell>
+    </mp-cells>
 
-        <view class="weui-cells__title">报名信息</view>
-        <!-- <view class="weui-cells weui-cells_radio weui-cells_after-title">
-            <radio-group bindchange="venueChange">
-                <label class="weui-cell weui-check__label" wx:for="{{venues}}" wx:key="value">
-                    <view class="weui-cell__bd">{{item.name}}</view>
-                    <view class="weui-cell__ft">
-                        <radio
-                            class="weui-check"
-                            value="{{item.value}}"
-                            checked="{{item.checked}}"
-                        />
-                        <i class="weui-icon-checked"></i>
-                    </view>
-                </label>
-            </radio-group>
-        </view> -->
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">营地</view>
-                </view>
-                    <view class="weui-cell__bd">
-                        <picker mode="selector" range= "{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
-                            <view class="weui-input">{{venues[venue]}}</view>
-                        </picker>
-                    </view>
-            </view> 
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <view class="weui-label">是否能够全程参与</view>
-                </view>
-                    <view class="weui-cell__bd">
-                        <picker mode="selector" range= "{{participations}}" value="{{}}" bindchange="bindParticipationChange">
-                            <view class="weui-input">{{participations[participation]}}</view>
-                        </picker>
-                    </view>
-            </view> 
-
-        <!-- <view class="weui-cells__title">你能否保证全程参与格致计划？（单选）</view>
-        <view class="weui-cells weui-cells_radio weui-cells_after-title">
-            <radio-group bindchange="participationChange">
-                <label class="weui-cell weui-check__label" wx:for="{{participation}}" wx:key="value">
-                    <view class="weui-cell__bd">{{item.name}}</view>
-                    <view class="weui-cell__ft">
-                        <radio
-                            class="weui-check"
-                            value="{{item.value}}"
-                            checked="{{item.checked}}"
-                        />
-                        <i class="weui-icon-checked"></i>
-                    </view>
-                </label>
-            </radio-group>
-        </view> -->
-
-        <view class="weui-cells__title">你是如何了解到格致计划的？（多选）</view>
-        <view class="weui-cells weui-cells_checkbox weui-cells_after-title">
-            <checkbox-group bindchange="howChange">
-                <label class="weui-cell weui-check__label" wx:for="{{how}}" wx:key="value">
-                    <view class="weui-cell__hd">
-                        <checkbox
-                            class="weui-check"
-                            value="{{item.value}}"
-                            checked="{{item.checked}}"
-                        />
-                        <i class="weui-icon-checked"></i>
-                    </view>
-                    <view class="weui-cell__bd">
-                        <view>{{item.name}}</view>
-                    </view>
-                </label>
-            </checkbox-group>
-            <view class="weui-cell weui-cell_link">
-                <view class="weui-cell__bd">其他（点此添加更多）</view>
-            </view>
-        </view>
-
-        <view class="weui-cells__title">你为什么想要参与格致计划？</view>
-        <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入回答，至少150字" style="height: 4em" />
-                    <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
-        </view>
-
-
-        <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" bindtap="showTopTips">确定</button>
+    <mp-cells title="报名信息" >
+        <mp-cell prop="venue" title="营地" ext-class="">
+                <picker mode="selector" range= "{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
+                    <view class="weui-input">{{venues[venue]}}</view>
+                </picker>
+        </mp-cell>
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">我可以全程参与本次格致计划</view>
+        <view class="weui-cell__ft">
+            <switch bindchange="bindParticipationChange"/>
         </view>
     </view>
-</view>
+    <view class="weui-cell weui-cell_switch">
+        <view class="weui-cell__bd">我是所选营地的本地人</view>
+        <view class="weui-cell__ft">
+            <switch bindchange="bindIsLocalChange" />
+        </view>
+    </view>
+    </mp-cells>
+
+    <mp-cells title="你是如何了解到格致计划的？（多选）">
+        <mp-checkbox-group bindchange="howChange">
+                <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="howChange">
+                    <mp-checkbox wx:for="{{how}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+                </mp-checkbox-group>
+        </mp-checkbox-group>
+    </mp-cells>
+
+    <mp-cells title="你为什么想要参与格致计划？">
+        <textarea placeholder="请输入150-500字的回答" style="height: 4em" />
+    </mp-cells>
+
+    <view class="weui-btn-area">
+        <button class="weui-btn" type="primary" bindtap="formSubmit">提交</button>
+    </view>
+
+</mp-form-page>
+
