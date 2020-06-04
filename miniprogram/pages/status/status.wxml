@@ -3,6 +3,7 @@
 <view wx:if="{{loading}}" class="custom-loading">
 	<mp-loading></mp-loading>
 </view>
+
 <block wx:if="{{!loading}}">
 	<view class="page">
 		<view class="page__bd">
@@ -13,27 +14,19 @@
 					<view style="font-size: 13px;color: #888888;">学生姓名</view>
 					<view>{{studentName}}</view>
 					<view slot="footer" style="font-size: 13px;color: #888888;">申请状态</view>
-					<view slot="footer" style="color: {{reviewed ? (accepted ? 'green' : 'gray'): 'blue'}};">{{reviewed ? (accepted ? "已录取": "未录取"): "暂未审阅"}}</view>
+					<view slot="footer" style="color: {{reviewed ? (accepted ? 'green' : 'red'): 'black'}};">{{reviewed ? (accepted ? "已录取": "未录取"): "审阅中"}}</view>
 				</mp-cell>
 				<mp-cell>
 					<view style="display: inline-block; vertical-align: middle">读书营地点</view>
           <view slot="footer">{{venue}}</view>
 				</mp-cell>
-				<mp-cell link>
-					<view style="display: inline-block; vertical-align: middle">单行列表</view>
-					<mp-badge style="margin-left: 5px;" content="New" />
-				</mp-cell>
 			</mp-cells>
 
 			<mp-cells title="功能">
-				<mp-cell title="开始选课" link>
-					<view slot="footer">
-					</view>
-				</mp-cell>
-        <mp-cell title="查看读书营安排" link>
-					<view slot="footer">
-					</view>
-				</mp-cell>
+				<mp-cell title="开始选课" link hover url="../course/course"></mp-cell>
+        <mp-cell title="查看已选课程" link hover></mp-cell>
+        <mp-cell title="查看读书营安排" link hover></mp-cell>
+        <mp-cell title="每日签到" link hover></mp-cell>
 			</mp-cells>
 		</view>
 	</view>
