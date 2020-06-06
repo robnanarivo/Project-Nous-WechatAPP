@@ -9,6 +9,59 @@ Page({
     loading: true,
     totalBatches: 0,
     batchCount: 0,
+    venueArray: ['所有申请', '长沙', '贵阳', '凯里', '烟台'],
+    venueIdx: 0
+  },
+
+  venuePickerChange: function(e) {
+    this.setData({
+      venueIdx: e.detail.value,
+      loading: true
+    })
+    const db = wx.cloud.database();
+    const studentApp = db.collection("studentApp");
+    var that = this;
+    if (that.data.venueIdx == 0) {
+      studentApp.count({
+        success: function(res) {
+          that.setData({
+            totalBatches: Math.ceil(res.total / 20)
+          });
+        }
+      });
+      studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').get({
+        success: function(res) {
+          console.log(res);
+          that.setData({
+            apps: res.data,
+            loading: false,
+            batchCount: 1
+          });
+        }
+      })      
+    } else {
+      studentApp.where({
+        venue: that.data.venueArray[that.data.venueIdx]
+      }).count({
+        success: function(res) {
+          that.setData({
+            totalBatches: Math.ceil(res.total / 20)
+          });
+        }
+      });
+      studentApp.where({
+        venue: that.data.venueArray[that.data.venueIdx]
+      }).orderBy('reviewed', 'asc').orderBy('accepted', 'desc').get({
+        success: function(res) {
+          console.log(res);
+          that.setData({
+            apps: res.data,
+            loading: false,
+            batchCount: 1
+          });
+        }
+      })
+    }
   },
 
   /**
