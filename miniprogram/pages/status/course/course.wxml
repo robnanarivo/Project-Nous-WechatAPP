@@ -1,0 +1,31 @@
+<!--pages/status/course/course.wxml-->
+
+<view wx:if="{{loading}}" class="custom-loading">
+	<mp-loading></mp-loading>
+</view>
+
+<view wx:if="{{!loading}}" class="page">
+	<view class="page__bd">
+		<view class="weui-article">
+			<view class="weui-article__h1">{{course.courseName}}</view>
+
+			<!-- 课程介绍 -->
+			<mp-cells ext-class="my-cells" title="课程介绍">
+				<mp-cell>
+					<view>{{course.courseDescription}}</view>
+				</mp-cell>
+			</mp-cells>
+
+			<!-- 领读人介绍 -->
+			<mp-cells title="领读人介绍">
+				<mp-cell>
+					<view>领读人姓名</view>
+					<view slot="footer">{{course.instructor}}</view>
+				</mp-cell>
+				<mp-cell>
+					<view>{{course.instructorDescription}}</view>
+				</mp-cell>
+			</mp-cells>
+		</view>
+	</view>
+</view>

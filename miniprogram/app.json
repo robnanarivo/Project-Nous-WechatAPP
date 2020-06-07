@@ -7,6 +7,7 @@
     "pages/addCourse/addCourse",
     "pages/status/status",
     "pages/status/courseInfo/courseInfo",
+    "pages/status/course/course",
     "pages/status/campLogistics/campLogistics",
     "pages/status/courseWechatGroup/courseWechatGroup",
     "pages/dailyCheckIn/dailyCheckIn",
