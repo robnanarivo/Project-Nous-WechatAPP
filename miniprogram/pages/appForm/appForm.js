@@ -4,24 +4,23 @@ Page({
   data: {
     name: "",
     gender: "",
-    school: "",
-    birthdate: "",
+    birthdate: "2002-01-01",
+    grade: "",
+    middleSchool: "",
+    highSchool: "",
+    university: "",
     wechatID: "",
-    dial: "",
-    venue: undefined,
-    participation: undefined,
-    isLocal: undefined,
+    mobile: "",
+    venue: "",
+    participation: false,
+    isLocal: false,
     howNous: [],
     whyNous: "",
     
-    formData: {
-
-    },
-
+    genders: ['男', '女', '其他'],
     venues: ['长沙', '贵阳', '凯里', '烟台'],
-
+    whichGrade: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
     participations: ['是', '否', '不确定'],
-
     isLocalItems: ['是', '否'],
 
     how: [
@@ -32,15 +31,15 @@ Page({
     ],
 
     showTopTips: false,
+  
+    formData: {
 
+    },
   },
 
   rules: [{
     name: 'name',
     rules: {required: true, message: '你还没有填写姓名'},
-  }, {
-    name: 'school',
-    rules: {required: true, message: '你还没有填写学校'},
   }, {
     name: 'birthdate',
     rules: {required: true, message: '你还没有填写生日'},
@@ -73,18 +72,31 @@ Page({
       }, 3000);
   },
 
-
-
   bindDateChange: function (e) {
     this.setData({
         birthdate: e.detail.value
     })
   },
 
-  bindVenueChange: function (e) {
+  bindGenderChange: function (e) {
+    console.log("性别变成了", this.data.genders[e.detail.value]);
     this.setData({
-        venue: e.detail.value
+        gender: this.data.genders[e.detail.value]
     })
+  },
+
+  bindGradeChange: function (e) {
+    console.log("教育阶段变成了", this.data.whichGrade[e.detail.value]);
+    this.setData({
+        grade: this.data.whichGrade[e.detail.value]
+    });
+  },
+
+  bindVenueChange: function (e) {
+    console.log("营地变成了", this.data.venues[e.detail.value]);
+    this.setData({
+        venue: this.data.venues[e.detail.value]
+    });
   },
 
   bindParticipationChange: function (e) {
