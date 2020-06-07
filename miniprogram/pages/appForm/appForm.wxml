@@ -2,64 +2,94 @@
 
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 <mp-form-page title="2020格致计划学生申请表">
-    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
-    </mp-form>
+	<mp-form id="form" rules="{{rules}}" models="{{formData}}">
+	</mp-form>
 
-    <mp-cells title="个人信息" >
-        <mp-cell prop="name" title="姓名" ext-class="">
-            <input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名"/>
-        </mp-cell>
-        <mp-cell prop="school" title="学校" ext-class="">
-            <input bindinput="formInputChange" data-field="school" class="weui-input" placeholder="请输入学校名称"/>
-        </mp-cell>
-        <mp-cell prop="birthdate" title="生日" ext-class="">
-            <picker mode="date" value="{{birthdate}}" bindchange="bindDateChange">
-                <view class="weui-input">{{birthdate}}</view>
-            </picker>
-        </mp-cell>
-        <mp-cell prop="mobile" title="手机号" ext-class="">
-            <input bindinput="formInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号"/>
-        </mp-cell>
-        <mp-cell prop="wechatID" title="微信号" ext-class="">
-            <input bindinput="formInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号"/>
-        </mp-cell>
-    </mp-cells>
+    <!-- 基本信息 -->
+	<mp-cells title="个人信息">
+		<mp-cell prop="name" title="姓名" ext-class="">
+			<input bindinput="formInputChange" data-field="name" class="weui-input" placeholder="请输入姓名" />
+		</mp-cell>
 
-    <mp-cells title="报名信息" >
-        <mp-cell prop="venue" title="营地" ext-class="">
-                <picker mode="selector" range= "{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
-                    <view class="weui-input">{{venues[venue]}}</view>
-                </picker>
-        </mp-cell>
-    <view class="weui-cell weui-cell_switch">
-        <view class="weui-cell__bd">我可以全程参与本次格致计划</view>
-        <view class="weui-cell__ft">
-            <switch bindchange="bindParticipationChange"/>
-        </view>
-    </view>
-    <view class="weui-cell weui-cell_switch">
-        <view class="weui-cell__bd">我是所选营地的本地人</view>
-        <view class="weui-cell__ft">
-            <switch bindchange="bindIsLocalChange" />
-        </view>
-    </view>
-    </mp-cells>
+		<mp-cell prop="gender" title="性别" ext-class="">
+			<picker mode="selector" range="{{genders}}" value="{{gender}}" bindchange="bindGenderChange">
+				<view class="weui-input">{{gender}}</view>
+			</picker>
+		</mp-cell>
 
-    <mp-cells title="你是如何了解到格致计划的？（多选）">
-        <mp-checkbox-group bindchange="howChange">
-                <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="howChange">
-                    <mp-checkbox wx:for="{{how}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
-                </mp-checkbox-group>
-        </mp-checkbox-group>
-    </mp-cells>
+		<mp-cell prop="birthdate" title="生日" ext-class="">
+			<picker mode="date" value="{{birthdate}}" bindchange="bindDateChange">
+				<view class="weui-input">{{birthdate}}</view>
+			</picker>
+		</mp-cell>
 
-    <mp-cells title="你为什么想要参与格致计划？">
-        <textarea placeholder="请输入150-500字的回答" style="height: 4em" />
-    </mp-cells>
+        <!-- 教育背景 -->
+		<mp-cell prop="grade" title="教育阶段" ext-class="">
+			<picker mode="selector" range="{{whichGrade}}" value="{{grade}}" bindchange="bindGradeChange">
+				<view class="weui-input">{{grade}}</view>
+			</picker>
+		</mp-cell>
+
+		<mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool" title="初中学校" ext-class="">
+			<input bindinput="formInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
+		</mp-cell>
+
+		<mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool" title="高中学校" ext-class="">
+			<input bindinput="formInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
+		</mp-cell>
+
+		<mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}"prop="university" title="大学学校" ext-class="">
+			<input bindinput="formInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
+		</mp-cell>
+
+		<!-- 联系方式 -->
+		<mp-cell prop="mobile" title="手机号" ext-class="">
+			<input bindinput="formInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
+		</mp-cell>
+
+		<mp-cell prop="wechatID" title="微信号" ext-class="">
+			<input bindinput="formInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号" />
+		</mp-cell>
+	</mp-cells>
+
+    <!-- 报名信息 -->
+	<mp-cells title="报名信息">
+		<mp-cell prop="venue" title="营地" ext-class="">
+			<picker mode="selector" range="{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
+				<view class="weui-input" >{{venue}}</view>
+			</picker>
+		</mp-cell>
+
+		<view class="weui-cell weui-cell_switch">
+			<view class="weui-cell__bd">我可以全程参与本次格致计划</view>
+			<view class="weui-cell__ft">
+				<switch bindchange="bindParticipationChange" />
+			</view>
+		</view>
+        
+		<view class="weui-cell weui-cell_switch">
+			<view class="weui-cell__bd">我是所选营地的本地人</view>
+			<view class="weui-cell__ft">
+				<switch bindchange="bindIsLocalChange" />
+			</view>
+		</view>
+	</mp-cells>
+
+	<mp-cells title="你是如何了解到格致计划的？（多选）">
+		<mp-checkbox-group bindchange="howChange">
+			<mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="howChange">
+				<mp-checkbox wx:for="{{how}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+			</mp-checkbox-group>
+		</mp-checkbox-group>
+	</mp-cells>
+
+    <!-- 答题 -->
+	<mp-cells title="你为什么想要参与格致计划？">
+		<textarea placeholder="请输入150-500字的回答" style="height: 10em" />
+		</mp-cells>
 
     <view class="weui-btn-area">
         <button class="weui-btn" type="primary" bindtap="formSubmit">提交</button>
     </view>
 
 </mp-form-page>
-
