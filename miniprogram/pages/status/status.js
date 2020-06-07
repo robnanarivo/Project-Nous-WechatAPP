@@ -9,18 +9,23 @@ Page({
    */
   data: {
     // application details
-    studentName: null,
-    venue: null,
+    studentName: "",
+    venue: "",
 
     // application status
-    accepted: null,
-    reviewed: null,
+    accepted: false,
+    reviewed: false,
 
     // course selected
-    courseSelected: null,
+    hasSelectedCourse: false,
+    courseSelected: {
+      AM: "",
+      PM: "",
+    },
 
     // page info
-    loading: true,
+    loadingStudent: true,
+    loadingCourseSelected: true,
   },
 
   /**
@@ -28,8 +33,10 @@ Page({
    */
   onLoad: function (options) {
     const studentApp = wx.cloud.database().collection("studentApp");
+    const courseSelection = wx.cloud.database().collection("courseSelection");
     let page = this;
 
+    // loading student
     studentApp.where({
       _openid: app.globalData.openid,
     })
@@ -37,18 +44,48 @@ Page({
       .get({
         success: res => {
           console.log("Successfully getting student", res.data[0].name);
+          console.log(res.data[0].hasSelectedCourse);
           page.setData({
             studentName: res.data[0].name,
             venue: res.data[0].venue,
             reviewed: res.data[0].reviewed,
             accepted: res.data[0].accepted,
-            loading: false,
+            hasSelectedCourse: res.data[0].hasSelectedCourse,
+            loadingStudent: false,
           });
+          if (res.data[0].hasSelectedCourse) {
+            loadCourseSelected(page, app.globalData.openid);
+          } else {
+            page.setData({
+              loadingCourseSelected: false,
+            });
+          }
         },
         fail: err => {
           console.error("Failed to get info", err)
         },
       });
+
+    // loading course selected
+    function loadCourseSelected(page, openid) {
+      courseSelection.where({
+        _openid: openid,
+      })
+        .limit(1)
+        .get({
+          success: res => {
+            console.log("Successfully getting course selected of", res.data[0].studentName);
+            page.setData({
+              "courseSelected.AM": res.data[0].courseSelected.AM.courseName,
+              "courseSelected.PM": res.data[0].courseSelected.PM.courseName,
+              loadingCourseSelected: false,
+            });
+          },
+          fail: err => {
+            console.error("Failed to get info", err)
+          },
+        });
+    }
   },
 
   /**

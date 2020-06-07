@@ -1,10 +1,10 @@
 <!--pages/status/status.wxml-->
 
-<view wx:if="{{loading}}" class="custom-loading">
+<view wx:if="{{loadingStudnet || loadingCourseSelected}}" class="custom-loading">
 	<mp-loading></mp-loading>
 </view>
 
-<block wx:if="{{!loading}}">
+<block wx:if="{{!(loadingStudnet || loadingCourseSelected)}}">
 	<view class="page">
 		<view class="page__bd">
 			<mp-cells title="申请信息">
@@ -22,12 +22,30 @@
 				</mp-cell>
 			</mp-cells>
 
-			<mp-cells title="功能">
-				<mp-cell title="开始选课" link hover url="../course/course"></mp-cell>
-        <mp-cell title="查看已选课程" link hover></mp-cell>
-        <mp-cell title="查看读书营安排" link hover></mp-cell>
-        <mp-cell title="每日签到" link hover></mp-cell>
-			</mp-cells>
+			<block wx:if="{{reviewed && accepted}}">
+				<block wx:if="{{hasSelectedCourse}}">
+					<mp-cells title="已选课程">
+						<mp-cell>
+							<view style="font-size: 13px;color: #888888;">上午</view>
+							<view>{{courseSelected.AM}}</view>
+						</mp-cell>
+						<mp-cell>
+							<view style="font-size: 13px;color: #888888;">下午</view>
+							<view>{{courseSelected.PM}}</view>
+						</mp-cell>
+					</mp-cells>
+				</block>
+
+				<mp-cells title="功能">
+					<mp-cell link hover wx:if="{{!hasSelectedCourse}}" title="开始选课" url="../courseSelect/courseSelect"></mp-cell>
+					<mp-cell link hover title="查看所有课程简介" url="./courseInfo/courseInfo"></mp-cell>
+					<mp-cell link hover title="查看读书营安排" url="./campLogistics/campLogistics"></mp-cell>
+					<block wx:if="{{hasSelectedCourse}}">
+						<mp-cell link hover title="加入课程微信群" url="./courseWechatGroup/courseWechatGroup"></mp-cell>
+						<mp-cell link hover title="每日签到" url="../dailyCheckIn/dailyCheckIn"></mp-cell>
+					</block>
+				</mp-cells>
+			</block>
 		</view>
 	</view>
 </block>

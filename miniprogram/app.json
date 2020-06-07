@@ -2,11 +2,16 @@
   "pages": [
     "pages/portal/portal",
     "pages/appForm/appForm",
-    "pages/course/course",
+    "pages/courseSelect/courseSelect",
     "pages/admission/admission",
     "pages/addCourse/addCourse",
     "pages/status/status",
-    "pages/appView/appView"
+    "pages/status/courseInfo/courseInfo",
+    "pages/status/campLogistics/campLogistics",
+    "pages/status/courseWechatGroup/courseWechatGroup",
+    "pages/dailyCheckIn/dailyCheckIn",
+    "pages/appView/appView",
+    "pages/reportProblems/reportProblems"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
