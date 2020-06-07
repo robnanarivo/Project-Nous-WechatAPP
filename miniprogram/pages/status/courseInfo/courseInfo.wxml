@@ -1,2 +1,13 @@
 <!--pages/status/courseInfo/courseInfo.wxml-->
-<text>pages/status/courseInfo/courseInfo.wxml</text>
+
+<view wx:if="{{loading}}" class="custom-loading">
+  <mp-loading></mp-loading>
+</view>
+
+<mp-cells wx:if="{{!loading}}" ext-class="my-cells" title="课程列表">
+  <view wx:for="{{courseList}}">
+    <mp-cell link hover url="../course/course?id={{item._id}}">
+      <view>{{item.courseName}}</view>
+    </mp-cell>
+  </view>
+</mp-cells>

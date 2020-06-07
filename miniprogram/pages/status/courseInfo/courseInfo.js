@@ -5,14 +5,28 @@ Page({
    * Page initial data
    */
   data: {
-
+    courseList: [],
+    loading: true,
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    const couresList = wx.cloud.database().collection("courseList");
+    const venue = options.venue;
+    let page = this;
 
+    couresList.where({
+      venue,
+    }).get({
+      success: function(res) {
+        page.setData({
+          courseList: res.data,
+          loading: false,
+        });
+      }
+    })
   },
 
   /**
