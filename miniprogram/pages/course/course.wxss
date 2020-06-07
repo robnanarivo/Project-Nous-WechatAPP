@@ -1,7 +1,0 @@
-/* pages/course/course.wxss */
-
-.back-button {
-  margin: 5rpx;
-  background: gray; 
-  color: white;
-}

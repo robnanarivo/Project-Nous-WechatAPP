@@ -8,7 +8,7 @@ Page({
    * Page initial data
    */
   data: {
-    isNewUser: true,
+    hasApplied: false,
     loading: true,
   },
 
