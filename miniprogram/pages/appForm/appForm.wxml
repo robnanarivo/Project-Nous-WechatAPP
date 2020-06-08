@@ -25,7 +25,7 @@
       <!-- 教育背景 -->
       <mp-cell prop="grade">
 				<view slot="title">教育阶段</view>
-        <picker mode="selector" range="{{whichGrade}}" value="{{grade}}" bindchange="bindGradeChange">
+        <picker mode="selector" range="{{gradeItems}}" value="{{grade}}" bindchange="bindGradeChange">
           <view class="weui-input">{{grade}}</view>
         </picker>
       </mp-cell>
@@ -58,7 +58,7 @@
   	<!-- 报名信息 -->
     <mp-cells title="报名信息">
       <mp-cell prop="venue" title="营地" ext-class="">
-        <picker mode="selector" range="{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
+        <picker mode="selector" range="{{venueItems}}" value="{{venue}}" bindchange="bindVenueChange">
           <view class="weui-input" >{{venue}}</view>
         </picker>
       </mp-cell>
