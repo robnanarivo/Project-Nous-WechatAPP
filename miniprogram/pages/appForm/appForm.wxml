@@ -32,17 +32,17 @@
 
       <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool">
 				<view slot="title">初中学校</view>
-        <input bindinput="formInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
+        <input bindinput="bindInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
       </mp-cell>
 
       <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool">
 				<view slot="title">高中学校</view>
-        <input bindinput="formInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
+        <input bindinput="bindInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}"prop="university">
+      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}" prop="university">
 				<view slot="title">大学学校</view>
-        <input bindinput="formInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
+        <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
 
       <!-- 联系方式 -->

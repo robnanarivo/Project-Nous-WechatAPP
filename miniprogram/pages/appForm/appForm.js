@@ -38,7 +38,20 @@ Page({
       rules: {required: true, message: '你还没有填写性别'},
     }, {
       name: 'birthdate',
-      rules: {required: true, message: '你还没有填写生日'}
+      rules: {required: true, message: '你还没有填写生日'},
+    }, {
+      name: 'grade',
+      rules: {required: true, message: '你还没有填写教育阶段'},
+    }, {
+      name: 'middleSchool',
+      rules: {required: false},
+    }, {
+      name: 'highSchool',
+      rules: {required: false},
+    }, {
+      name: 'university',
+      rules: {required: false},
+        
     // }, {
     //   name: 'mobile',
     //   rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
@@ -67,13 +80,6 @@ Page({
     })
   },
 
-  bindBirthDateChange: function (e) {
-    this.setData({
-        birthdate: e.detail.value,
-        [`formData.birthdate`]: e.detail.value
-    })
-  },
-
   bindGenderChange: function (e) {
     this.setData({
       gender: this.data.genderItems[e.detail.value],
@@ -81,10 +87,17 @@ Page({
     })
   },
 
-  bindGradeChange: function (e) {
-    console.log("教育阶段变成了", this.data.whichGrade[e.detail.value]);
+  bindBirthDateChange: function (e) {
     this.setData({
-        grade: this.data.whichGrade[e.detail.value]
+      birthdate: e.detail.value,
+      [`formData.birthdate`]: e.detail.value
+    })
+  },
+
+  bindGradeChange: function (e) {
+    this.setData({ 
+      grade: this.data.gradeItems[e.detail.value],
+      [`formData.grade`]: this.data.gradeItems[e.detail.value]
     });
   },
 
