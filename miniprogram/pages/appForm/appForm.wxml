@@ -23,21 +23,25 @@
       </mp-cell>
 
       <!-- 教育背景 -->
-      <mp-cell prop="grade" title="教育阶段" ext-class="">
+      <mp-cell prop="grade">
+				<view slot="title">教育阶段</view>
         <picker mode="selector" range="{{whichGrade}}" value="{{grade}}" bindchange="bindGradeChange">
           <view class="weui-input">{{grade}}</view>
         </picker>
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool" title="初中学校" ext-class="">
+      <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool">
+				<view slot="title">初中学校</view>
         <input bindinput="formInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool" title="高中学校" ext-class="">
+      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool">
+				<view slot="title">高中学校</view>
         <input bindinput="formInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}"prop="university" title="大学学校" ext-class="">
+      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}"prop="university">
+				<view slot="title">大学学校</view>
         <input bindinput="formInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
 
@@ -51,7 +55,7 @@
       </mp-cell>
     </mp-cells>
 
-      <!-- 报名信息 -->
+  	<!-- 报名信息 -->
     <mp-cells title="报名信息">
       <mp-cell prop="venue" title="营地" ext-class="">
         <picker mode="selector" range="{{venues}}" value="{{venue}}" bindchange="bindVenueChange">
@@ -82,7 +86,7 @@
       </mp-checkbox-group>
     </mp-cells>
 
-      <!-- 答题 -->
+    <!-- 答题 -->
     <mp-cells title="你为什么想要参与格致计划？">
       <textarea placeholder="请输入150-500字的回答" style="height: 10em" />
 		</mp-cells>
