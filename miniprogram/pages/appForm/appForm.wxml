@@ -1,6 +1,8 @@
 <!--miniprogram/pages/appForm/appForm.wxml-->
 <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
-
+<mp-dialog title="提交" show="{{submitting}}" buttons="{{submitDialogBtns}}" bindbuttontap="tapSubmitDialog">
+  <view>确定提交申请吗？</view>
+</mp-dialog>
 <mp-form-page title="2020格致计划学生申请表">
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
 
@@ -98,7 +100,7 @@
 		</mp-cells>
 
     <view slot="button" class="button-area">
-      <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+      <button class="weui-btn" type="primary" bindtap="validateForm">提交</button>
     </view>
   </mp-form>
 </mp-form-page>

@@ -1,12 +1,12 @@
 {
   "usingComponents": {
-    "mp-msg": "/miniprogram_npm/weui-miniprogram/msg/msg",
     "mp-toptips": "/miniprogram_npm/weui-miniprogram/toptips/toptips",
     "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
     "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-checkbox": "/miniprogram_npm/weui-miniprogram/checkbox/checkbox",
     "mp-checkbox-group": "/miniprogram_npm/weui-miniprogram/checkbox-group/checkbox-group",
     "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
-    "mp-form-page": "/miniprogram_npm/weui-miniprogram/form-page/form-page"
+    "mp-form-page": "/miniprogram_npm/weui-miniprogram/form-page/form-page",
+    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
   }
 }

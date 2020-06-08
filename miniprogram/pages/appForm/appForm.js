@@ -76,6 +76,9 @@ Page({
     }],
     formData: {},
     error: '',
+
+    submitting: false,
+    submitDialogBtns: [{text: '取消'}, {text: '提交'}]
   },
 
   bindInputChange: function (e) {
@@ -149,27 +152,20 @@ Page({
     });
   },
 
-  submitForm: function () {
-    this.selectComponent('#form').validate((valid, errors) => {
-        console.log('valid', valid, errors)
-        if (!valid) {
-            const firstError = Object.keys(errors)
-            if (firstError.length) {
-                this.setData({
-                    error: errors[firstError[0]].message
-                })
-            }
-        } else {
-          const db = wx.cloud.database();
-          const studentApp = db.collection("studentApp");
-          studentApp.add({
-            data: this.data.formData,
-            success: function(res) {
-              console.log(res);
-            }
-          })
-          wx.showToast({
-            title: "申请提交成功",
+  tapSubmitDialog: function (e) {
+    if (e.detail.index == 1) {
+      const db = wx.cloud.database();
+      const studentApp = db.collection("studentApp");
+      const that = this;
+      const wxn = wx;
+      studentApp.add({
+        data: this.data.formData,
+        success: function(res) {
+          that.setData({
+            submitting: false
+          });
+          wxn.showToast({
+            title: "提交成功",
             duration: 2000,
             success: function() {
               setTimeout(function() {
@@ -178,7 +174,29 @@ Page({
                 })
               }, 2000);          
             }
-          })
+          });
+        }
+      });
+    } else {
+      this.setData({
+        submitting: false
+      });
+    }
+  },
+
+  validateForm: function () {
+    this.selectComponent('#form').validate((valid, errors) => {
+        if (!valid) {
+            const firstError = Object.keys(errors)
+            if (firstError.length) {
+                this.setData({
+                    error: errors[firstError[0]].message
+                })
+            }
+        } else {
+          this.setData({
+            submitting: true
+          });
         }
     })
   },
