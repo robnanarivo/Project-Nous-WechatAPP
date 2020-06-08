@@ -10,39 +10,16 @@
         <input bindinput="bindInputChange" data-field="name" placeholder="请输入姓名"/>
       </mp-cell>
 
-      <mp-cell prop="gender" title="性别">
+      <mp-cell prop="gender" title="性别" link="{{!gender}}">
         <picker mode="selector" range="{{genderItems}}" value="{{gender}}" bindchange="bindGenderChange">
           <view class="weui-input">{{gender}}</view>
         </picker>
       </mp-cell>
 
-      <mp-cell prop="birthdate" title="生日">
+      <mp-cell prop="birthdate" title="生日" link="{{!birthdate}}">
         <picker mode="date" value="{{birthdate}}" bindchange="bindBirthDateChange">
           <view class="weui-input">{{birthdate}}</view>
         </picker>
-      </mp-cell>
-
-      <!-- 教育背景 -->
-      <mp-cell prop="grade">
-				<view slot="title">教育阶段</view>
-        <picker mode="selector" range="{{gradeItems}}" value="{{grade}}" bindchange="bindGradeChange">
-          <view class="weui-input">{{grade}}</view>
-        </picker>
-      </mp-cell>
-
-      <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool">
-				<view slot="title">初中学校</view>
-        <input bindinput="bindInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
-      </mp-cell>
-
-      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool">
-				<view slot="title">高中学校</view>
-        <input bindinput="bindInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
-      </mp-cell>
-
-      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}" prop="university">
-				<view slot="title">大学学校</view>
-        <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
 
       <!-- 联系方式 -->
@@ -53,11 +30,35 @@
       <mp-cell prop="wechatID" title="微信号">
         <input bindinput="bindInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号" />
       </mp-cell>
+
+			<!-- 教育背景 -->
+      <mp-cell prop="grade" link="{{!grade}}">
+				<view slot="title" class="title-slot">教育阶段</view>
+        <picker mode="selector" range="{{gradeItems}}" value="{{grade}}" bindchange="bindGradeChange">
+          <view class="weui-input">{{grade}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool">
+				<view slot="title" class="title-slot">初中学校</view>
+        <input bindinput="bindInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool">
+				<view slot="title" class="title-slot">高中学校</view>
+        <input bindinput="bindInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}" prop="university">
+				<view slot="title" class="title-slot">大学学校</view>
+        <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
+      </mp-cell>
     </mp-cells>
 
   	<!-- 报名信息 -->
+		<view class="separator" />
     <mp-cells title="报名信息">
-      <mp-cell prop="venue" title="营地" ext-class="">
+      <mp-cell prop="venue" title="营地" link="{{!venue}}">
         <picker mode="selector" range="{{venueItems}}" value="{{venue}}" bindchange="bindVenueChange">
           <view class="weui-input" >{{venue}}</view>
         </picker>
@@ -78,6 +79,7 @@
       </view>
     </mp-cells>
 
+		<view class="separator" />
     <mp-cells title="你是如何了解到格致计划的？（多选）">
       <mp-checkbox-group bindchange="howChange">
         <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="bindHowNousChange">
@@ -87,6 +89,7 @@
     </mp-cells>
 
     <!-- 答题 -->
+		<view class="separator" />
     <mp-cells title="你为什么想要参与格致计划？">
 			<mp-cell>
       	<textarea prop="whyNous" placeholder="请输入150-500字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="500"/>

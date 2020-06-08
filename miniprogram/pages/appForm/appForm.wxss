@@ -1,2 +1,8 @@
 /* pages/appForm/appForm.wxss */
-.page{height:100%}.weui-label{width:3.1em}
+.separator {
+  height: 40rpx;
+}
+
+.title-slot {
+  margin-right: 50rpx;
+}
