@@ -6,3 +6,7 @@
 .title-slot {
   margin-right: 50rpx;
 }
+
+.button-area {
+  margin-top: 80rpx;
+}

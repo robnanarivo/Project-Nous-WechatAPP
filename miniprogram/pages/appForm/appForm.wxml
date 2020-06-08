@@ -97,7 +97,7 @@
 			</mp-cell>
 		</mp-cells>
 
-    <view slot="button" style="margin-top: 60rpx;">
+    <view slot="button" class="button-area">
       <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
     </view>
   </mp-form>
