@@ -46,12 +46,12 @@
       </mp-cell>
 
       <!-- 联系方式 -->
-      <mp-cell prop="mobile" title="手机号" ext-class="">
-        <input bindinput="formInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
+      <mp-cell prop="mobile" title="手机号">
+        <input bindinput="bindInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
       </mp-cell>
 
-      <mp-cell prop="wechatID" title="微信号" ext-class="">
-        <input bindinput="formInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号" />
+      <mp-cell prop="wechatID" title="微信号">
+        <input bindinput="bindInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号" />
       </mp-cell>
     </mp-cells>
 
