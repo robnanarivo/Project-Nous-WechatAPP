@@ -1,10 +1,12 @@
-// pages/appForm/appForm.js
-
+// miniprogram/pages/appForm/appForm.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    name: "",
     gender: "",
-    birthdate: "2002-01-01",
+    birthdate: "",
     grade: "",
     middleSchool: "",
     highSchool: "",
@@ -16,8 +18,8 @@ Page({
     isLocal: false,
     howNous: [],
     whyNous: "",
-    
-    genders: ['男', '女', '其他'],
+
+    genderItems: ['男', '女', '其他'],
     venues: ['长沙', '贵阳', '凯里', '烟台'],
     whichGrade: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
     participations: ['是', '否', '不确定'],
@@ -30,58 +32,54 @@ Page({
           {name: '其他', value: '3'},
     ],
 
-    showTopTips: false,
-  
+    rules: [{
+      name: 'name',
+      rules: {required: true, message: '你还没有填写姓名'},
+    }, {
+      name: 'gender',
+      rules: {required: true, message: '你还没有填写性别'},
+    }, {
+      name: 'birthdate',
+      rules: {required: true, message: '你还没有填写生日'}
+    // }, {
+    //   name: 'mobile',
+    //   rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
+    // }, {
+    //   name: 'wechatID',
+    //   rules: {required: true, message: '你还没有填写微信号'},
+    // }, {
+    //   name: 'venue',
+    //   rules: {required: true, message: '你还没有选择报名营地'},
+    // }, {
+    //   name: 'participation',
+    //   rules: {required: true, message: '你还没有回答完报名信息'},
+    // }, {
+    //   name: 'whyNous',
+    //   rules: [{required: true, message: '你还没有填写申请问题'},{rangelength: [150, 500], message: '回答长度超出字数范围'}]
+    }],
     formData: {
-
     },
+    error: '',
   },
 
-  rules: [{
-    name: 'name',
-    rules: {required: true, message: '你还没有填写姓名'},
-  }, {
-    name: 'birthdate',
-    rules: {required: true, message: '你还没有填写生日'},
-  }, {
-    name: 'mobile',
-    rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
-  }, {
-    name: 'wechatID',
-    rules: {required: true, message: '你还没有填写微信号'},
-  }, {
-    name: 'venue',
-    rules: {required: true, message: '你还没有选择报名营地'},
-  }, {
-    name: 'participation',
-    rules: {required: true, message: '你还没有回答完报名信息'},
-  }, {
-    name: 'whyNous',
-    rules: [{required: true, message: '你还没有填写申请问题'},{rangelength: [150, 500], message: '回答长度超出字数范围'}]
-  }],
-
-  showTopTips: function(){
-      var that = this;
-      this.setData({
-          showTopTips: true
-      });
-      setTimeout(function(){
-          that.setData({
-              showTopTips: false
-          });
-      }, 3000);
-  },
-
-  bindDateChange: function (e) {
+  bindInputChange: function (e) {
+    const {field} = e.currentTarget.dataset;
     this.setData({
-        birthdate: e.detail.value
+      [`formData.${field}`]: e.detail.value
+    })
+  },
+
+  bindBirthDateChange: function (e) {
+    this.setData({
+        birthdate: e.detail.value,
+        [`formData.birthdate`]: e.detail.value
     })
   },
 
   bindGenderChange: function (e) {
-    console.log("性别变成了", this.data.genders[e.detail.value]);
     this.setData({
-        gender: this.data.genders[e.detail.value]
+      gender: this.data.genderItems[e.detail.value],
+      [`formData.gender`]: this.data.genderItems[e.detail.value]
     })
   },
 
@@ -131,31 +129,7 @@ Page({
       });
   },
 
-  formInputChange(e) {
-    const {field} = e.currentTarget.dataset
-    this.setData({
-        [`formData.${field}`]: e.detail.value
-    })
-},
-
-
-  formSubmit(e) {
-    const db = wx.cloud.database();
-    const studentApp = db.collection("studentApp");
-
-    studentApp.add({
-      data: e.detail.value,
-      success: function(res) {
-        console.log(res);
-      }
-    })
-    console.log('form发生了submit事件，携带数据为：', e.detail.value);
-    wx.reLaunch({
-      url: '../portal/portal',
-    })
-  },
-
-  submitForm() {
+  submitForm: function () {
     this.selectComponent('#form').validate((valid, errors) => {
         console.log('valid', valid, errors)
         if (!valid) {
@@ -164,16 +138,84 @@ Page({
                 this.setData({
                     error: errors[firstError[0]].message
                 })
-
             }
         } else {
-
-            this.formSubmit
-            wx.showToast({
-                title: '提交成功'
-            })
+          const db = wx.cloud.database();
+          const studentApp = db.collection("studentApp");
+          studentApp.add({
+            data: this.data.formData,
+            success: function(res) {
+              console.log(res);
+            }
+          })
+          wx.showToast({
+            title: "申请提交成功",
+            duration: 2000,
+            success: function() {
+              setTimeout(function() {
+                wx.reLaunch({
+                  url: '../portal/portal',
+                })
+              }, 2000);          
+            }
+          })
         }
     })
-}
+  },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })
