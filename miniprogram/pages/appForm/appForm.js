@@ -18,6 +18,7 @@ Page({
     isLocal: false,
     howNous: [],
     whyNous: "",
+    whyNousLength: 0,
 
     genderItems: ['男', '女', '其他'],
     gradeItems: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
@@ -68,12 +69,12 @@ Page({
     }, {
       name: 'howNous',
       rules: {required: false},
-    // }, {
-    //   name: 'whyNous',
-    //   rules: [{required: true, message: '你还没有填写申请问题'},{rangelength: [150, 500], message: '回答长度超出字数范围'}]
+    }, {
+      name: 'whyNous',
+      rules: [{required: true, message: '你还没有填写申请问题'}, 
+      {minlength: 150, message: '回答未达到最少字数'}]
     }],
-    formData: {
-    },
+    formData: {},
     error: '',
   },
 
@@ -138,6 +139,14 @@ Page({
           howNous: howItems,
           [`formData.howNous`]: howItems
       });
+  },
+
+  bindWhyNousChange: function (e) {
+    this.setData({
+      whyNous: e.detail.value,
+      [`formData.whyNous`]: e.detail.value,
+      whyNousLength: e.detail.value.length
+    });
   },
 
   submitForm: function () {

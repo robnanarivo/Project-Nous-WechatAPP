@@ -88,7 +88,10 @@
 
     <!-- 答题 -->
     <mp-cells title="你为什么想要参与格致计划？">
-      <textarea placeholder="请输入150-500字的回答" style="height: 10em" />
+			<mp-cell>
+      	<textarea prop="whyNous" placeholder="请输入150-500字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="500"/>
+				<view class="weui-textarea-counter">{{whyNousLength}}/500</view>
+			</mp-cell>
 		</mp-cells>
 
     <view slot="button" style="margin-top: 60rpx;">
