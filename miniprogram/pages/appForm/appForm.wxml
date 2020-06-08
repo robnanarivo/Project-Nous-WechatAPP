@@ -66,14 +66,14 @@
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">我可以全程参与本次格致计划</view>
         <view class="weui-cell__ft">
-          <switch bindchange="bindParticipationChange" />
+          <switch checked="{{participation}}" bindchange="bindParticipationChange" />
         </view>
       </view>
           
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">我是所选营地的本地人</view>
         <view class="weui-cell__ft">
-          <switch bindchange="bindIsLocalChange" />
+          <switch checked="{{isLocal}}" bindchange="bindIsLocalChange" />
         </view>
       </view>
     </mp-cells>

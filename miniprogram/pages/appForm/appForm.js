@@ -57,12 +57,15 @@ Page({
     }, {
       name: 'wechatID',
       rules: {required: true, message: '你还没有填写微信号'},
-    // }, {
-    //   name: 'venue',
-    //   rules: {required: true, message: '你还没有选择报名营地'},
-    // }, {
-    //   name: 'participation',
-    //   rules: {required: true, message: '你还没有回答完报名信息'},
+    }, {
+      name: 'venue',
+      rules: {required: true, message: '你还没有选择报名营地'},
+    }, {
+      name: 'participation',
+      rules: {required: false},
+    }, {
+      name: 'isLocal',
+      rules: {required: false},
     // }, {
     //   name: 'whyNous',
     //   rules: [{required: true, message: '你还没有填写申请问题'},{rangelength: [150, 500], message: '回答长度超出字数范围'}]
@@ -101,21 +104,23 @@ Page({
   },
 
   bindVenueChange: function (e) {
-    console.log("营地变成了", this.data.venues[e.detail.value]);
     this.setData({
-        venue: this.data.venues[e.detail.value]
+        venue: this.data.venueItems[e.detail.value],
+        [`formData.venue`]: this.data.venueItems[e.detail.value]
     });
   },
 
   bindParticipationChange: function (e) {
     this.setData({
-        participation: e.detail.value
+        participation: e.detail.value,
+        [`formData.participation`]: e.detail.value
     })
   },
 
   bindIsLocalChange: function (e) {
     this.setData({
-        isLocal: e.detail.value
+        isLocal: e.detail.value,
+        [`formData.isLocal`]: e.detail.value
     })
   },
 
