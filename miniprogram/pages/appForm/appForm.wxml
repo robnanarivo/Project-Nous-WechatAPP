@@ -80,8 +80,8 @@
 
     <mp-cells title="你是如何了解到格致计划的？（多选）">
       <mp-checkbox-group bindchange="howChange">
-        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="howChange">
-          <mp-checkbox wx:for="{{how}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
+        <mp-checkbox-group prop="checkbox" multi="{{true}}" bindchange="bindHowNousChange">
+          <mp-checkbox wx:for="{{howNousItems}}" wx:key="value" label="{{item.name}}" value="{{item.value}}" checked="{{item.checked}}"></mp-checkbox>
         </mp-checkbox-group>
       </mp-checkbox-group>
     </mp-cells>

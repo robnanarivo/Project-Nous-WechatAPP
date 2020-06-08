@@ -22,8 +22,7 @@ Page({
     genderItems: ['男', '女', '其他'],
     gradeItems: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
     venueItems: ['长沙', '贵阳', '凯里', '烟台'],
-
-    how: [
+    howNousItems: [
           {name: '微信公众号', value: '0'},
           {name: '父母推荐', value: '1'},
           {name: '朋友推荐', value: '2'},
@@ -65,6 +64,9 @@ Page({
       rules: {required: false},
     }, {
       name: 'isLocal',
+      rules: {required: false},
+    }, {
+      name: 'howNous',
       rules: {required: false},
     // }, {
     //   name: 'whyNous',
@@ -124,23 +126,17 @@ Page({
     })
   },
 
-  howChange: function (e) {
-      console.log('how发生change事件，携带value值为：', e.detail.value);
-
-      var howItems = this.data.how, values = e.detail.value;
-      for (var i = 0, lenI = howItems.length; i < lenI; ++i) {
-          howItems[i].checked = false;
-
-          for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-              if(howItems[i].value == values[j]){
-                  howItems[i].checked = true;
-                  break;
-              }
-          }
+  bindHowNousChange: function (e) {
+      var howItems = this.data.howNousItems, values = e.detail.value;
+      for (var i = 0; i < howItems.length; i++) {
+        howItems[i].checked = false;
       }
-
+      for (var j = 0; j <  values.length; j++) {
+        howItems[values[j]].checked = true;
+      }
       this.setData({
-          how: howItems
+          howNous: howItems,
+          [`formData.howNous`]: howItems
       });
   },
 
