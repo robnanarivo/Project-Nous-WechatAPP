@@ -14,6 +14,7 @@ Page({
     wechatID: "",
     mobile: "",
     subject: "",
+    subjectInfo: "",
     plan: "",
     venue: "",
     participation: false,
@@ -65,6 +66,9 @@ Page({
       rules: {required: true, message: '你还没有填写微信号'},
     }, {
       name: 'subject',
+      rules: {required: false},
+    }, {
+      name: 'subjectInfo',
       rules: {required: false},
     }, {
       name: 'plan',

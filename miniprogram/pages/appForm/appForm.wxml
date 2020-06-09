@@ -63,6 +63,10 @@
         </picker>
       </mp-cell>
 
+      <mp-cell wx:if="{{subject == '不分科'}}" title="自选科目" prop="subjectInfo">
+        <input bindinput="bindInputChange" data-field="subjectInfo" placeholder="请输入选择的考试科目"/>
+      </mp-cell>
+
       <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二'}}" prop="plan" link="{{!plan}}">
 				<view slot="title" class="title-slot">未来计划</view>
         <picker mode="selector" range="{{planItems}}" value="{{plan}}" bindchange="bindPlanChange">
