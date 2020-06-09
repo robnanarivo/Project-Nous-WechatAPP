@@ -15,7 +15,7 @@
       <view slot="footer">已拒绝人数：{{totalRejected}}</view>
     </mp-cell>
     <mp-cell wx:if="{{venueIdx > 0}}">
-      <view slot="title">{{venue}}营申请人数：{{venueApplicants}}</view>
+      <view slot="title">{{venueArray[venueIdx]}}营申请人数：{{venueApplicants}}</view>
       <view slot="footer" style="color: green;">已录取人数：{{venueAccepted}}</view>
       <view slot="footer">已拒绝人数：{{venueRejected}}</view>
     </mp-cell>
