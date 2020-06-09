@@ -18,7 +18,7 @@
         </picker>
       </mp-cell>
 
-      <mp-cell prop="birthdate" title="生日" link="{{!birthdate}}">
+      <mp-cell prop="birthdate" title="生日" link>
         <picker mode="date" value="{{birthdate}}" bindchange="bindBirthDateChange">
           <view class="weui-input">{{birthdate}}</view>
         </picker>
