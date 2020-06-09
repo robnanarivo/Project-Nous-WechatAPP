@@ -10,7 +10,13 @@ Page({
     totalBatches: 0,
     batchCount: 0,
     venueArray: ['所有申请', '长沙', '贵阳', '凯里', '烟台'],
-    venueIdx: 0
+    venueIdx: 0,
+    totalApplicants: 0,
+    totalAccepted: 0,
+    totalRejected: 0,
+    venueApplicants: 0,
+    venueAccepted: 0,
+    venueRejected: 0
   },
 
   venuePickerChange: function(e) {
@@ -25,7 +31,8 @@ Page({
       studentApp.count({
         success: function(res) {
           that.setData({
-            totalBatches: Math.ceil(res.total / 20)
+            totalBatches: Math.ceil(res.total / 20),
+            totalApplicants: res.total
           });
         }
       });
@@ -45,8 +52,31 @@ Page({
       }).count({
         success: function(res) {
           that.setData({
-            totalBatches: Math.ceil(res.total / 20)
+            totalBatches: Math.ceil(res.total / 20),
+            venueApplicants: res.total
           });
+        }
+      });
+      studentApp.where({
+        venue: that.data.venueArray[that.data.venueIdx],
+        reviewed: true,
+        accepted: true
+      }).count({
+        success: function(res) {
+          that.setData({
+            venueAccepted: res.total
+          })
+        }
+      });
+      studentApp.where({
+        venue: that.data.venueArray[that.data.venueIdx],
+        reviewed: true,
+        accepted: false
+      }).count({
+        success: function(res) {
+          that.setData({
+            venueRejected: res.total
+          })
         }
       });
       studentApp.where({
@@ -74,8 +104,29 @@ Page({
     studentApp.count({
       success: function(res) {
         that.setData({
-          totalBatches: Math.ceil(res.total / 20)
+          totalBatches: Math.ceil(res.total / 20),
+          totalApplicants: res.total
         });
+      }
+    });
+    studentApp.where({
+      reviewed: true,
+      accepted: true
+    }).count({
+      success: function(res) {
+        that.setData({
+          totalAccepted: res.total
+        })
+      }
+    });
+    studentApp.where({
+      reviewed: true,
+      accepted: false
+    }).count({
+      success: function(res) {
+        that.setData({
+          totalRejected: res.total
+        })
       }
     });
     studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').get({
