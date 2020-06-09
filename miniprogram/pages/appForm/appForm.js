@@ -13,6 +13,8 @@ Page({
     university: "",
     wechatID: "",
     mobile: "",
+    subject: "",
+    plan: "",
     venue: "",
     participation: false,
     isLocal: false,
@@ -22,6 +24,8 @@ Page({
 
     genderItems: ['男', '女', '其他'],
     gradeItems: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
+    subjectItems: ['文科', '理科', '不分科'],
+    planItems: ['高考', '出国', '未定'],
     venueItems: ['长沙', '贵阳', '凯里', '烟台'],
     howNousItems: [
           {name: '微信公众号', value: '0'},
@@ -57,6 +61,12 @@ Page({
     }, {
       name: 'wechatID',
       rules: {required: true, message: '你还没有填写微信号'},
+    }, {
+      name: 'subject',
+      rules: {required: false},
+    }, {
+      name: 'plan',
+      rules: {required: false},
     }, {
       name: 'venue',
       rules: {required: true, message: '你还没有选择报名营地'},
@@ -106,6 +116,20 @@ Page({
     this.setData({ 
       grade: this.data.gradeItems[e.detail.value],
       [`formData.grade`]: this.data.gradeItems[e.detail.value]
+    });
+  },
+
+  bindSubjectChange: function (e) {
+    this.setData({ 
+      subject: this.data.subjectItems[e.detail.value],
+      [`formData.subject`]: this.data.subjectItems[e.detail.value]
+    });
+  },
+
+  bindPlanChange: function (e) {
+    this.setData({ 
+      plan: this.data.planItems[e.detail.value],
+      [`formData.plan`]: this.data.planItems[e.detail.value]
     });
   },
 

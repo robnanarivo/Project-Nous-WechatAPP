@@ -55,6 +55,20 @@
 				<view slot="title" class="title-slot">大学学校</view>
         <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
+
+      <mp-cell wx:if="{{grade === '高一' || grade === '高二' || grade === '高三'}}" prop="subject" link="{{!subject}}">
+				<view slot="title" class="title-slot">文理分科</view>
+        <picker mode="selector" range="{{subjectItems}}" value="{{subject}}" bindchange="bindSubjectChange">
+          <view class="weui-input">{{subject}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二'}}" prop="plan" link="{{!plan}}">
+				<view slot="title" class="title-slot">未来计划</view>
+        <picker mode="selector" range="{{planItems}}" value="{{plan}}" bindchange="bindPlanChange">
+          <view class="weui-input">{{plan}}</view>
+        </picker>
+      </mp-cell>
     </mp-cells>
 
   	<!-- 报名信息 -->
