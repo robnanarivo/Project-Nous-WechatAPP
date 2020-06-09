@@ -21,6 +21,8 @@ Page({
     howNous: [],
     whyNous: "",
     whyNousLength: 0,
+    whichCourse: "",
+    whichCourseLength: 0,
 
     genderItems: ['男', '女', '其他'],
     gradeItems: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
@@ -81,8 +83,11 @@ Page({
       rules: {required: false},
     }, {
       name: 'whyNous',
-      rules: [{required: true, message: '你还没有填写申请问题'}, 
+      rules: [{required: true, message: '你还没有填写第一个申请问题'}, 
       {minlength: 150, message: '回答未达到最少字数'}]
+    }, {
+      name: 'whichCourse',
+      rules: [{required: true, message: '你还没有填写第二个申请问题'}, {minlength: 200, message: '回答未达到最少字数'}]
     }],
     formData: {},
     error: '',
@@ -173,6 +178,14 @@ Page({
       whyNous: e.detail.value,
       [`formData.whyNous`]: e.detail.value,
       whyNousLength: e.detail.value.length
+    });
+  },
+
+  bindWhichCourseChange: function (e) {
+    this.setData({
+      whichCourse: e.detail.value,
+      [`formData.whichCourse`]: e.detail.value,
+      whichCourseLength: e.detail.value.length
     });
   },
 
