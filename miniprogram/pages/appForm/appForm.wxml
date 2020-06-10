@@ -35,36 +35,36 @@
 
 			<!-- 教育背景 -->
       <mp-cell prop="grade" link="{{!grade}}">
-				<view slot="title">教育阶段</view>
+				<view slot="title" class="title-slot">教育阶段</view>
         <picker mode="selector" range="{{gradeItems}}" value="{{grade}}" bindchange="bindGradeChange">
           <view class="weui-input">{{grade}}</view>
         </picker>
       </mp-cell>
 
       <mp-cell wx:if="{{grade === '初三'}}" prop="middleSchool">
-				<view slot="title">初中学校</view>
+				<view slot="title" class="title-slot">初中学校</view>
         <input bindinput="bindInputChange" data-field="middleSchool" class="weui-input" placeholder="请输入初中学校名称" />
       </mp-cell>
 
       <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二' || grade === '高三'}}" prop="highSchool">
-				<view slot="title">高中学校</view>
+				<view slot="title" class="title-slot">高中学校</view>
         <input bindinput="bindInputChange" data-field="highSchool" class="weui-input" placeholder="请输入高中学校名称" />
       </mp-cell>
 
       <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}" prop="university">
-				<view slot="title">大学学校</view>
+				<view slot="title" class="title-slot">大学学校</view>
         <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
 
       <mp-cell wx:if="{{grade === '高一' || grade === '高二' || grade === '高三'}}" prop="subject" link="{{!subject}}">
-				<view slot="title">文理分科</view>
+				<view slot="title" class="title-slot">文理分科</view>
         <picker mode="selector" range="{{subjectItems}}" value="{{subject}}" bindchange="bindSubjectChange">
           <view class="weui-input">{{subject}}</view>
         </picker>
       </mp-cell>
 
       <mp-cell wx:if="{{subject == '不分科'}}" prop="subjectInfo">
-        <view slot="title">自选科目</view>
+        <view slot="title" class="title-slot">自选科目</view>
         <input bindinput="bindInputChange" data-field="subjectInfo" placeholder="请输入选择的考试科目"/>
       </mp-cell>
 
