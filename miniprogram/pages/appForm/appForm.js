@@ -172,7 +172,7 @@ Page({
                 wx.reLaunch({
                   url: '../portal/portal',
                 })
-              }, 2000);          
+              }, 2000);
             }
           });
         }
