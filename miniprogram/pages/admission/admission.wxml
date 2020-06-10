@@ -2,7 +2,7 @@
 
 <view class="page">
   <mp-cells ext-class="my-cells" title="选择查看的读书营地点">
-    <mp-cell>
+    <mp-cell link>
       <picker bindchange="venuePickerChange" value="{{venueIdx}}" range="{{venueArray}}">
         <view>
           {{venueArray[venueIdx]}}
