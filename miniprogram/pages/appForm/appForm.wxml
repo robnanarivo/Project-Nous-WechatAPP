@@ -18,7 +18,7 @@
         </picker>
       </mp-cell>
 
-      <mp-cell prop="birthdate" title="生日" link="{{!birthdate}}">
+      <mp-cell prop="birthdate" title="生日" link>
         <picker mode="date" value="{{birthdate}}" bindchange="bindBirthDateChange">
           <view class="weui-input">{{birthdate}}</view>
         </picker>
@@ -54,6 +54,24 @@
       <mp-cell wx:if="{{grade === '高三' || grade === '大学本科' || grade === '大学研究生' || grade === '已工作'}}" prop="university">
 				<view slot="title" class="title-slot">大学学校</view>
         <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '高一' || grade === '高二' || grade === '高三'}}" prop="subject" link="{{!subject}}">
+				<view slot="title" class="title-slot">文理分科</view>
+        <picker mode="selector" range="{{subjectItems}}" value="{{subject}}" bindchange="bindSubjectChange">
+          <view class="weui-input">{{subject}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell wx:if="{{subject == '不分科'}}" title="自选科目" prop="subjectInfo">
+        <input bindinput="bindInputChange" data-field="subjectInfo" placeholder="请输入选择的考试科目"/>
+      </mp-cell>
+
+      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二'}}" prop="plan" link="{{!plan}}">
+				<view slot="title" class="title-slot">未来计划</view>
+        <picker mode="selector" range="{{planItems}}" value="{{plan}}" bindchange="bindPlanChange">
+          <view class="weui-input">{{plan}}</view>
+        </picker>
       </mp-cell>
     </mp-cells>
 
@@ -96,6 +114,14 @@
 			<mp-cell>
       	<textarea prop="whyNous" placeholder="请输入150-500字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="500"/>
 				<view class="weui-textarea-counter">{{whyNousLength}}/500</view>
+			</mp-cell>
+		</mp-cells>
+
+    <view class="separator" />
+    <mp-cells title="在{{venue ? venue : '你申请的读书'}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？">
+			<mp-cell>
+      	<textarea prop="whichCourse" placeholder="请输入200-300字的回答" style="height: 350rpx" bindinput="bindWhichCourseChange" maxlength="300"/>
+				<view class="weui-textarea-counter">{{whichCourseLength}}/300</view>
 			</mp-cell>
 		</mp-cells>
 

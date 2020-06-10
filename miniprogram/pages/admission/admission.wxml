@@ -9,6 +9,16 @@
         </view>
       </picker>
     </mp-cell>
+    <mp-cell>
+      <view slot="title">总申请人数：{{totalApplicants}}</view>
+      <view slot="footer" style="color: green;">已录取人数：{{totalAccepted}}</view>
+      <view slot="footer">已拒绝人数：{{totalRejected}}</view>
+    </mp-cell>
+    <mp-cell wx:if="{{venueIdx > 0}}">
+      <view slot="title">{{venueArray[venueIdx]}}营申请人数：{{venueApplicants}}</view>
+      <view slot="footer" style="color: green;">已录取人数：{{venueAccepted}}</view>
+      <view slot="footer">已拒绝人数：{{venueRejected}}</view>
+    </mp-cell>
   </mp-cells>
   <view wx:if="{{!loading}}" class="page__bd">
     <mp-cells ext-class="my-cells" title="申请列表">

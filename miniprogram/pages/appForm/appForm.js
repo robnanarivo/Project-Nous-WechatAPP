@@ -6,22 +6,29 @@ Page({
    */
   data: {
     gender: "",
-    birthdate: "",
+    birthdate: "2002-01-01",
     grade: "",
     middleSchool: "",
     highSchool: "",
     university: "",
     wechatID: "",
     mobile: "",
+    subject: "",
+    subjectInfo: "",
+    plan: "",
     venue: "",
     participation: false,
     isLocal: false,
     howNous: [],
     whyNous: "",
     whyNousLength: 0,
+    whichCourse: "",
+    whichCourseLength: 0,
 
     genderItems: ['男', '女', '其他'],
     gradeItems: ['初三', '高一', '高二', '高三', '大学本科', '大学研究生', '已工作'],
+    subjectItems: ['文科', '理科', '不分科'],
+    planItems: ['高考', '出国', '未定'],
     venueItems: ['长沙', '贵阳', '凯里', '烟台'],
     howNousItems: [
           {name: '微信公众号', value: '0'},
@@ -58,6 +65,15 @@ Page({
       name: 'wechatID',
       rules: {required: true, message: '你还没有填写微信号'},
     }, {
+      name: 'subject',
+      rules: {required: false},
+    }, {
+      name: 'subjectInfo',
+      rules: {required: false},
+    }, {
+      name: 'plan',
+      rules: {required: false},
+    }, {
       name: 'venue',
       rules: {required: true, message: '你还没有选择报名营地'},
     }, {
@@ -71,8 +87,11 @@ Page({
       rules: {required: false},
     }, {
       name: 'whyNous',
-      rules: [{required: true, message: '你还没有填写申请问题'}, 
+      rules: [{required: true, message: '你还没有填写第一个申请问题'}, 
       {minlength: 150, message: '回答未达到最少字数'}]
+    }, {
+      name: 'whichCourse',
+      rules: [{required: true, message: '你还没有填写第二个申请问题'}, {minlength: 200, message: '回答未达到最少字数'}]
     }],
     formData: {},
     error: '',
@@ -106,6 +125,20 @@ Page({
     this.setData({ 
       grade: this.data.gradeItems[e.detail.value],
       [`formData.grade`]: this.data.gradeItems[e.detail.value]
+    });
+  },
+
+  bindSubjectChange: function (e) {
+    this.setData({ 
+      subject: this.data.subjectItems[e.detail.value],
+      [`formData.subject`]: this.data.subjectItems[e.detail.value]
+    });
+  },
+
+  bindPlanChange: function (e) {
+    this.setData({ 
+      plan: this.data.planItems[e.detail.value],
+      [`formData.plan`]: this.data.planItems[e.detail.value]
     });
   },
 
@@ -149,6 +182,14 @@ Page({
       whyNous: e.detail.value,
       [`formData.whyNous`]: e.detail.value,
       whyNousLength: e.detail.value.length
+    });
+  },
+
+  bindWhichCourseChange: function (e) {
+    this.setData({
+      whichCourse: e.detail.value,
+      [`formData.whichCourse`]: e.detail.value,
+      whichCourseLength: e.detail.value.length
     });
   },
 
