@@ -1,13 +1,84 @@
 <!--miniprogram/pages/appView/appView.wxml-->
 
-<view class="page">
-  <view class="page__bd" wx:if="{{!loading}}">
-    <mp-cells ext-class="my-cells" title="申请">
-      <mp-cell title="姓名：{{app.name}}"></mp-cell>
-      <mp-cell title="性别：{{app.gender}}"></mp-cell>
-      <mp-cell title="为什么要来格致计划：{{app.whyProjectNous}}"></mp-cell>
+<mp-form-page wx:if="{{!loading}}" title="{{app.venue}}营申请">
+  <mp-form>
+    <mp-cells title="个人信息">
+      <mp-cell title="姓名">{{app.name}}</mp-cell>
+      <mp-cell title="性别">{{app.gender}}</mp-cell>
+      <mp-cell title="生日">{{app.birthdate}}</mp-cell>
+      <mp-cell title="手机号">{{app.mobile}}</mp-cell>
+      <mp-cell title="微信号">{{app.wechatID}}</mp-cell>
+      <mp-cell>
+				<view slot="title" class="title-slot">教育阶段</view>
+        <view>{{app.grade}}</view>
+      </mp-cell>
+      <mp-cell wx:if="{{app.grade === '初三'}}">
+				<view slot="title" class="title-slot">初中学校</view>
+        <view>{{app.middleSchool}}</view>
+      </mp-cell>
+
+      <mp-cell wx:if="{{app.grade === '初三' || app.grade === '高一' || app.grade === '高二' || app.grade === '高三'}}">
+				<view slot="title" class="title-slot">高中学校</view>
+        <view>{{app.highSchool}}</view>
+      </mp-cell>
+
+      <mp-cell wx:if="{{app.grade === '高三' || app.grade === '大学本科' || app.grade === '大学研究生' || app.grade === '已工作'}}">
+				<view slot="title" class="title-slot">大学学校</view>
+        <view>{{app.university}}</view>
+      </mp-cell>
+
+      <mp-cell wx:if="{{app.grade === '高一' || app.grade === '高二' || app.grade === '高三'}}">
+				<view slot="title" class="title-slot">文理分科</view>
+        <view>{{app.subject}}</view>
+      </mp-cell>
+
+      <mp-cell wx:if="{{app.subject == '不分科'}}">
+        <view slot="title" class="title-slot">自选科目</view>
+        <view>{{app.subjectInfo}}</view>
+      </mp-cell>
+
+      <mp-cell wx:if="{{app.grade === '初三' || app.grade === '高一' || app.grade === '高二'}}">
+				<view slot="title" class="title-slot">未来计划</view>
+        <view>{{app.plan}}</view>
+      </mp-cell>
     </mp-cells>
-    <view class="button-holder" wx:if="{{!app.reviewed}}">
+
+  	<!-- 报名信息 -->
+		<view class="separator" />
+    <mp-cells title="报名信息">
+      <mp-cell>
+        <view slot="title">我可以全程参与本次格致计划</view>
+        <view slot="footer">{{app.participation ? '是' : '否'}}</view>
+      </mp-cell>
+          
+      <mp-cell>
+        <view slot="title">我是所选营地的本地人</view>
+        <view slot="footer">{{app.isLocal ? '是' : '否'}}</view>
+      </mp-cell>
+    </mp-cells>
+
+		<view class="separator" />
+    <mp-cells title="你是如何了解到格致计划的？（多选）">
+      <mp-cell wx:for="{{app.howNous}}" wx:key="{{item.value}}" wx:if="{{item.checked}}">
+        {{item.name}}
+      </mp-cell>
+    </mp-cells>
+
+    <!-- 答题 -->
+		<view class="separator" />
+    <mp-cells title="你为什么想要参与格致计划？">
+			<mp-cell>
+      	{{app.whyNous}}
+			</mp-cell>
+		</mp-cells>
+
+    <view class="separator" />
+    <mp-cells title="在{{app.venue}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？">
+			<mp-cell>
+      	{{app.whichCourse}}
+			</mp-cell>
+		</mp-cells>
+    <view class="button-area" wx:if="{{!app.reviewed}}">
       <button class="weui-btn accept-button" type="primary" bindtap="tapAcceptButton">录取</button>
       <button class="weui-btn reject-button" bindtap="tapRejectButton">拒绝</button>
     </view>
@@ -18,8 +89,9 @@
     <mp-dialog title="拒绝" show="{{showDialog && !accepting}}" buttons="{{rejectDialogBtns}}" bindbuttontap="tapRejectDialog">
       <view>是否确定拒绝该学生？</view>
     </mp-dialog>
-  </view>
-  <view wx:if="{{loading}}" class="custom-loading">
-    <mp-loading></mp-loading>
-  </view>
+  </mp-form>
+</mp-form-page>
+<view wx:if="{{loading}}" class="custom-loading">
+  <mp-loading></mp-loading>
 </view>
+

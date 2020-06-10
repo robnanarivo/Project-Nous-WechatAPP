@@ -3,6 +3,8 @@
     "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading",
     "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
     "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
-    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
+    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog",
+    "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
+    "mp-form-page": "/miniprogram_npm/weui-miniprogram/form-page/form-page"
   }
 }
