@@ -63,7 +63,8 @@
         </picker>
       </mp-cell>
 
-      <mp-cell wx:if="{{subject == '不分科'}}" title="自选科目" prop="subjectInfo">
+      <mp-cell wx:if="{{subject == '不分科'}}" prop="subjectInfo">
+        <view slot="title" class="title-slot">自选科目</view>
         <input bindinput="bindInputChange" data-field="subjectInfo" placeholder="请输入选择的考试科目"/>
       </mp-cell>
 

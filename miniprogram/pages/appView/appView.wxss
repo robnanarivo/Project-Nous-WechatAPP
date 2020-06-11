@@ -1,7 +1,14 @@
 /* miniprogram/pages/appView/appView.wxss */
+.separator {
+  height: 40rpx;
+}
 
-.button-holder {
-  margin-top: 40rpx;
+.title-slot {
+  margin-right: 50rpx;
+}
+
+.button-area {
+  margin-top: 70rpx;
 }
 
 .accept-button {
