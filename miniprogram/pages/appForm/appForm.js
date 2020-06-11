@@ -93,7 +93,9 @@ Page({
       name: 'whichCourse',
       rules: [{required: true, message: '你还没有填写第二个申请问题'}, {minlength: 200, message: '回答未达到最少字数'}]
     }],
-    formData: {},
+    formData: {
+      hasSelectedCourse: false,
+    },
     error: '',
 
     submitting: false,
