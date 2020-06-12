@@ -1,17 +1,21 @@
 {
   "pages": [
     "pages/portal/portal",
+
     "pages/appForm/appForm",
-    "pages/courseSelect/courseSelect",
+
     "pages/admission/admission",
+    "pages/admission/appView/appView",
     "pages/addCourse/addCourse",
+
     "pages/status/status",
+    "pages/status/courseSelect/courseSelect",
     "pages/status/courseInfo/courseInfo",
-    "pages/status/course/course",
+    "pages/status/courseInfo/course/course",
     "pages/status/campLogistics/campLogistics",
     "pages/status/courseWechatGroup/courseWechatGroup",
-    "pages/dailyCheckIn/dailyCheckIn",
-    "pages/appView/appView",
+    "pages/status/dailyCheckIn/dailyCheckIn",
+  
     "pages/reportProblems/reportProblems"
   ],
   "window": {
