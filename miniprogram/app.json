@@ -3,10 +3,11 @@
     "pages/portal/portal",
 
     "pages/appForm/appForm",
-
-    "pages/admission/admission",
-    "pages/admission/appView/appView",
-    "pages/addCourse/addCourse",
+    
+    "pages/admin/admin",
+    "pages/admin/addCourse/addCourse",
+    "pages/admin/admission/admission",
+    "pages/admin/admission/appView/appView",
 
     "pages/status/status",
     "pages/status/courseSelect/courseSelect",

@@ -1,0 +1,15 @@
+<!--pages/admin/admin.wxml-->
+
+<!-- Admin -->
+<view class="uploader">
+  <navigator url="./admission/admission" open-type="navigate" class="uploader-text">
+    <text>管理员查看申请</text>
+  </navigator>
+</view>
+
+<!-- Add a Course -->
+<view class="uploader">
+  <navigator url="./addCourse/addCourse" open-type="navigate" class="uploader-text">
+    <text>管理员发布课程</text>
+  </navigator>
+</view>

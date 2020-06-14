@@ -59,8 +59,8 @@
 
 		<view class="separator" />
     <mp-cells title="你是如何了解到格致计划的？（多选）">
-      <mp-cell wx:for="{{app.howNous}}" wx:key="{{item.value}}" wx:if="{{item.checked}}">
-        {{item.name}}
+      <mp-cell wx:for="{{app.howNous}}">
+        {{item}}
       </mp-cell>
     </mp-cells>
 
