@@ -32,9 +32,11 @@ Page({
     venueItems: ['长沙', '贵阳', '凯里', '烟台'],
     howNousItems: [
           {name: '微信公众号', value: '0'},
-          {name: '父母推荐', value: '1'},
-          {name: '朋友推荐', value: '2'},
-          {name: '其他', value: '3'},
+          {name: '微信朋友圈', value: '1'},
+          {name: '老师推荐', value: '2'},
+          {name: '父母推荐', value: '3'},
+          {name: '朋友推荐', value: '4'},
+          {name: '其他', value: '5'},
     ],
 
     rules: [{
@@ -93,10 +95,15 @@ Page({
       name: 'whichCourse',
       rules: [{required: true, message: '你还没有填写第二个申请问题'}, {minlength: 200, message: '回答未达到最少字数'}]
     }],
+
+    error: '',
+  
     formData: {
       hasSelectedCourse: false,
+      birthdate: "2002-01-01",
+      participation: false,
+      isLocal: false,
     },
-    error: '',
 
     submitting: false,
     submitDialogBtns: [{text: '取消'}, {text: '提交'}]
@@ -166,17 +173,15 @@ Page({
   },
 
   bindHowNousChange: function (e) {
-      var howItems = this.data.howNousItems, values = e.detail.value;
-      for (var i = 0; i < howItems.length; i++) {
-        howItems[i].checked = false;
-      }
-      for (var j = 0; j <  values.length; j++) {
-        howItems[values[j]].checked = true;
-      }
-      this.setData({
-          howNous: howItems,
-          [`formData.howNous`]: howItems
-      });
+    let howItems = this.data.howNousItems, values = e.detail.value;
+    let howNous = [];
+    for (let j = 0; j < values.length; j++) {
+      howNous.push(howItems[values[j]].name);
+    }
+    this.setData({
+        howNous: howNous,
+        [`formData.howNous`]: howNous
+    });
   },
 
   bindWhyNousChange: function (e) {

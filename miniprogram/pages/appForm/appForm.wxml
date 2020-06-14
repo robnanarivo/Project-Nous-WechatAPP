@@ -88,14 +88,14 @@
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">我可以全程参与本次格致计划</view>
         <view class="weui-cell__ft">
-          <switch checked="{{participation}}" bindchange="bindParticipationChange" />
+          <switch type="checkbox" checked="{{participation}}" bindchange="bindParticipationChange" />
         </view>
       </view>
           
       <view class="weui-cell weui-cell_switch">
         <view class="weui-cell__bd">我是所选营地的本地人</view>
         <view class="weui-cell__ft">
-          <switch checked="{{isLocal}}" bindchange="bindIsLocalChange" />
+          <switch type="checkbox" checked="{{isLocal}}" bindchange="bindIsLocalChange" />
         </view>
       </view>
     </mp-cells>
@@ -113,8 +113,8 @@
 		<view class="separator" />
     <mp-cells title="你为什么想要参与格致计划？">
 			<mp-cell>
-      	<textarea prop="whyNous" placeholder="请输入150-500字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="500"/>
-				<view class="weui-textarea-counter">{{whyNousLength}}/500</view>
+      	<textarea prop="whyNous" placeholder="请输入150-300字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="300"/>
+				<view class="weui-textarea-counter">{{whyNousLength}}/300</view>
 			</mp-cell>
 		</mp-cells>
 
