@@ -1,1 +1,24 @@
 /* pages/portal/portal.wxss */
+
+.box {
+  width: 100%;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 300px;
+}
+
+.apply-button {
+  color: white;
+  background: rgb(59, 130, 230);
+}
+
+.status-button {
+  color: white;
+  background: rgb(59, 130, 230);
+}
