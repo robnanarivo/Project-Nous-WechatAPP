@@ -10,20 +10,35 @@ cloud.init({
 })
 
 /**
- * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
- * 
  * event 参数包含小程序端调用传入的 data
  * 
  */
-exports.main = (event, context) => {
+exports.main = async (event, context) => {
   console.log(event)
   console.log(context)
 
-  // 可执行其他自定义逻辑
-  // console.log 的内容可以在云开发云函数调用日志查看
-
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
-  const wxContext = cloud.getWXContext()
+  const wxContext = cloud.getWXContext();
+  const db = cloud.database();
+  const studentApp = db.collection("studentApp");
+  const adminList = db.collection("adminList");
+
+  let hasApplied = false, isAdmin = false;
+  
+  let app = await studentApp.where({
+    _openid: wxContext.OPENID,
+  }).get();
+  if (app.data.length !== 0) {
+    hasApplied = true;
+  }
+
+  let admin = await adminList.doc("b06604d45ee4fafc000ae4fd4bf24308").get();
+  console.log(admin)
+  for (let adminId of admin.data.adminOpenId) {
+    if (wxContext.OPENID === adminId) {
+      isAdmin = true;
+    }
+  }
 
   return {
     event,
@@ -31,6 +46,8 @@ exports.main = (event, context) => {
     appid: wxContext.APPID,
     unionid: wxContext.UNIONID,
     env: wxContext.ENV,
+    hasApplied,
+    isAdmin,
   }
 }
 

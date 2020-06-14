@@ -9,13 +9,27 @@ Page({
    */
   data: {
     hasApplied: false,
+    isAdmin: false,
+
     loading: true,
+  },
+
+  tapApply: function() {
+    wx.navigateTo({
+      url: '../appForm/appForm',
+    });
+  },
+
+  tapStatus: function() {
+    wx.navigateTo({
+      url: '../status/status',
+    });
   },
 
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: async function (options) {
+  onLoad: function (options) {
     wx.cloud.callFunction({
       name: "login",
       data: {},
@@ -23,6 +37,8 @@ Page({
         console.log("Open ID is", res.result.openid);
         app.globalData.openid = res.result.openid;
         this.setData({
+          isAdmin: res.result.isAdmin,
+          hasApplied: res.result.hasApplied,
           loading: false,
         })
       },

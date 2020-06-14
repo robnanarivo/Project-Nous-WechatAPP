@@ -5,48 +5,26 @@
 </view>
 
 <block wx:if="{{!loading}}">
-  <view class="container">
+	<view class="box">
+		<view class="logo">
+			<image src="../../images/格致计划logo.png" mode="aspectFit"></image>
+		</view>
 
-    <!-- Application Form -->
-    <view wx:if="{{!hasApplied}}" class="uploader">
-      <navigator url="../appForm/appForm" open-type="navigate" class="uploader-text">
-        <text>我要申请</text>
-      </navigator>
-    </view>
+		<!-- Application Form -->
+		<view wx:if="{{!hasApplied}}">
+			<button class="weui-btn apply-button" bindtap="tapApply">我要申请</button>
+		</view>
 
-    <!-- Check status -->
-    <view wx:if="{{hasApplied}}" class="uploader">
-      <navigator url="../status/status" open-type="navigate" class="uploader-text">
-        <text>查看申请</text>
-      </navigator>
-    </view>
+		<!-- Status -->
+		<view wx:if="{{hasApplied}}">
+			<button class="weui-btn status-button" bindtap="tapStatus">查看申请</button>
+		</view>
+	</view>
 
-    <!-- Admin -->
-    <view class="uploader">
-      <navigator url="../admission/admission" open-type="navigate" class="uploader-text">
-        <text>管理员查看申请</text>
-      </navigator>
-    </view>
-
-    <!-- Add a Course -->
-    <view class="uploader">
-      <navigator url="../addCourse/addCourse" open-type="navigate" class="uploader-text">
-        <text>管理员发布课程</text>
-      </navigator>
-    </view>
-
-    <!-- Status -->
-    <view class="uploader">
-      <navigator url="../status/status" open-type="navigate" class="uploader-text">
-        <text>(临时)查看申请</text>
-      </navigator>
-    </view>
-
-    <view class="uploader">
-      <navigator url="../reportProblems/reportProblems" open-type="navigate" class="uploader-text">
-        <text>问题反馈</text>
-      </navigator>
-    </view>
-
-  </view>
+	<view class="weui-footer weui-footer_fixed-bottom">
+		<view class="weui-footer__links">
+			<navigator url="../reportProblems/reportProblems" class="weui-footer__link">问题反馈</navigator>
+			<navigator wx:if="{{isAdmin}}" url="../admin/admin" class="weui-footer__link">管理员入口</navigator>
+		</view>
+	</view>
 </block>
