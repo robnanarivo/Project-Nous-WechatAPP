@@ -116,7 +116,7 @@
 
     <!-- 答题 -->
 		<view class="separator" />
-    <mp-cells title="你为什么想要参与格致计划？">
+    <mp-cells title="你为什么想要参与格致计划？(150-300字)">
 			<mp-cell>
       	<textarea prop="whyNous" placeholder="请输入150-300字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="300"/>
 				<view class="weui-textarea-counter">{{whyNousLength}}/300</view>
@@ -124,7 +124,7 @@
 		</mp-cells>
 
     <view class="separator" />
-    <mp-cells title="在{{venue ? venue : '你申请的读书'}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？">
+    <mp-cells title="在{{venue ? venue : '你申请的读书'}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？(200-300字)">
 			<mp-cell>
       	<textarea prop="whichCourse" placeholder="请输入200-300字的回答" style="height: 350rpx" bindinput="bindWhichCourseChange" maxlength="300"/>
 				<view class="weui-textarea-counter">{{whichCourseLength}}/300</view>
