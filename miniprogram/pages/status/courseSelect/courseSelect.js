@@ -205,7 +205,7 @@ Page({
   // return to 加入课程微信群
   tapReturnToStatus() {
     wx.navigateTo({
-      url: '../status/status',
+      url: '../../status/status',
     })
   },
 })
