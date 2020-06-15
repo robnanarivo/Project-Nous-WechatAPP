@@ -10,3 +10,7 @@
 .button-area {
   margin-top: 80rpx;
 }
+
+.info {
+  color: gray;
+}

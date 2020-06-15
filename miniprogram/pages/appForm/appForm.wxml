@@ -12,13 +12,14 @@
         <input bindinput="bindInputChange" data-field="name" placeholder="请输入姓名"/>
       </mp-cell>
 
-      <mp-cell prop="gender" title="性别" link="{{!gender}}">
+      <mp-cell prop="gender" title="性别">
         <picker mode="selector" range="{{genderItems}}" value="{{gender}}" bindchange="bindGenderChange">
-          <view class="weui-input">{{gender}}</view>
+          <view wx:if="{{gender}}" class="weui-input">{{gender}}</view>
+          <view wx:if="{{!gender}}" class="info">请选择性别</view>
         </picker>
       </mp-cell>
 
-      <mp-cell prop="birthdate" title="生日" link>
+      <mp-cell prop="birthdate" title="生日">
         <picker mode="date" value="{{birthdate}}" bindchange="bindBirthDateChange">
           <view class="weui-input">{{birthdate}}</view>
         </picker>
@@ -34,10 +35,11 @@
       </mp-cell>
 
 			<!-- 教育背景 -->
-      <mp-cell prop="grade" link="{{!grade}}">
+      <mp-cell prop="grade">
 				<view slot="title" class="title-slot">教育阶段</view>
         <picker mode="selector" range="{{gradeItems}}" value="{{grade}}" bindchange="bindGradeChange">
-          <view class="weui-input">{{grade}}</view>
+          <view wx:if="{{grade}}" class="weui-input">{{grade}}</view>
+          <view wx:if="{{!grade}}" class="info">请选择教育阶段</view>
         </picker>
       </mp-cell>
 
@@ -56,10 +58,11 @@
         <input bindinput="bindInputChange" data-field="university" class="weui-input" placeholder="请输入大学学校名称" />
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '高一' || grade === '高二' || grade === '高三'}}" prop="subject" link="{{!subject}}">
+      <mp-cell wx:if="{{grade === '高一' || grade === '高二' || grade === '高三'}}" prop="subject">
 				<view slot="title" class="title-slot">文理分科</view>
         <picker mode="selector" range="{{subjectItems}}" value="{{subject}}" bindchange="bindSubjectChange">
-          <view class="weui-input">{{subject}}</view>
+          <view wx:if="{{subject}}" class="weui-input">{{subject}}</view>
+          <view wx:if="{{!subject}}" class="info">请选择文理分科</view>
         </picker>
       </mp-cell>
 
@@ -68,10 +71,11 @@
         <input bindinput="bindInputChange" data-field="subjectInfo" placeholder="请输入选择的考试科目"/>
       </mp-cell>
 
-      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二'}}" prop="plan" link="{{!plan}}">
+      <mp-cell wx:if="{{grade === '初三' || grade === '高一' || grade === '高二'}}" prop="plan">
 				<view slot="title" class="title-slot">未来计划</view>
         <picker mode="selector" range="{{planItems}}" value="{{plan}}" bindchange="bindPlanChange">
-          <view class="weui-input">{{plan}}</view>
+          <view wx:if="{{plan}}" class="weui-input">{{plan}}</view>
+          <view wx:if="{{!plan}}" class="info">请选择未来计划</view>
         </picker>
       </mp-cell>
     </mp-cells>
@@ -79,9 +83,10 @@
   	<!-- 报名信息 -->
 		<view class="separator" />
     <mp-cells title="报名信息">
-      <mp-cell prop="venue" title="营地" link="{{!venue}}">
+      <mp-cell prop="venue" title="营地">
         <picker mode="selector" range="{{venueItems}}" value="{{venue}}" bindchange="bindVenueChange">
-          <view class="weui-input" >{{venue}}</view>
+          <view wx:if="{{venue}}" class="weui-input">{{venue}}</view>
+          <view wx:if="{{!venue}}" class="info">请选择营地</view>
         </picker>
       </mp-cell>
 
