@@ -6,7 +6,6 @@ Page({
     const courseList = db.collection("courseList");
 
     let toUpload = e.detail.value
-    toUpload.enrolledStudents = []
     courseList.add({
       data: toUpload,
       success: function(res) {
