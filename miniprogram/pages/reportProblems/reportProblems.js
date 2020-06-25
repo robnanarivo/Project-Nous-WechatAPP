@@ -9,17 +9,23 @@ Page({
       problem: ""
     },
 
-    //TODO: rules have not been applied yet
     rules: [{
       name: 'problem',
-      rules: [{required: true, message: '你还没有填写用户反馈'}, 
-      {minlength: 25, message: '请用至少50字描述您遇到的问题'}]
+      rules: [{
+          required: true,
+          message: '你还没有填写用户反馈'
+        },
+        {
+          minlength: 25,
+          message: '请用至少25字描述您遇到的问题'
+        }
+      ]
     }],
   },
 
   bindReportProblems: function (e) {
     this.setData({
-      [`formData.problem`]: e.detail.value,
+      "formData.problem": e.detail.value,
     });
   },
 
@@ -27,22 +33,34 @@ Page({
     const db = wx.cloud.database();
     const reportProblems = db.collection("reportProblems");
     const wxn = wx;
-    reportProblems.add({
-      data: this.data.formData,
-      success: function(res) {
-        wxn.showToast({
-          title: "提交成功",
-          duration: 2000,
-          success: function() {
-            setTimeout(function() {
-              wx.reLaunch({
-                url: '../portal/portal',
-              })
-            }, 2000);
+
+    this.selectComponent('#form').validate((valid, errors) => {
+      if (!valid) {
+        const firstError = Object.keys(errors)
+        if (firstError.length) {
+          this.setData({
+            error: errors[firstError[0]].message
+          })
+        }
+      } else {
+        reportProblems.add({
+          data: this.data.formData,
+          success: function (res) {
+            wxn.showToast({
+              title: "提交成功",
+              duration: 2000,
+              success: function () {
+                setTimeout(function () {
+                  wx.reLaunch({
+                    url: '../portal/portal',
+                  })
+                }, 2000);
+              }
+            });
           }
         });
       }
-    });
+    })
   },
 
   /**

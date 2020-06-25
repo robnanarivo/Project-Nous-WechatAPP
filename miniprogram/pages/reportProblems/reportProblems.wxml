@@ -1,11 +1,12 @@
 <!--pages/reportProblems/reportProblems.wxml-->
 
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
 <mp-form-page title="格致计划小程序用户反馈">
   <mp-form id="form" models="{{formData}}">
 
     <mp-cells title="请描述您遇到的问题，我们将尽快为您解决：">
 			<mp-cell>
-      	<textarea prop="problem" placeholder="问题描述" style="height: 400rpx" bindinput="bindReportProblems" minlength="25" maxlength="500"/>
+      	<textarea prop="problem" placeholder="问题描述" style="height: 400rpx" bindinput="bindReportProblems" maxlength="500"/>
 			</mp-cell>
 		</mp-cells>
 
