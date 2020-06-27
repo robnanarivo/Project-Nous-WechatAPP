@@ -30,10 +30,6 @@
         <input bindinput="bindInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
       </mp-cell>
 
-      <mp-cell prop="wechatID" title="微信号">
-        <input bindinput="bindInputChange" data-field="wechatID" class="weui-input" placeholder="请输入微信号" />
-      </mp-cell>
-
 			<!-- 教育背景 -->
       <mp-cell prop="grade">
 				<view slot="title" class="title-slot">教育阶段</view>

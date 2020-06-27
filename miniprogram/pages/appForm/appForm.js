@@ -11,7 +11,6 @@ Page({
     middleSchool: "",
     highSchool: "",
     university: "",
-    wechatID: "",
     mobile: "",
     subject: "",
     subjectInfo: "",
@@ -63,9 +62,6 @@ Page({
     }, {
       name: 'mobile',
       rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
-    }, {
-      name: 'wechatID',
-      rules: {required: true, message: '你还没有填写微信号'},
     }, {
       name: 'subject',
       rules: {required: false},
