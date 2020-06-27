@@ -1,12 +1,14 @@
 // pages/course/course.js
 
+//TODO: show how many students has selected a given course; disable selection if more than 15 students have selected the given course; use slot="footer"
+
 const app = getApp();
 
 Page({
   data: {
     // course info
-    courseInfoAM: [], //上午可选的课(已选人数小于15人)
-    courseInfoPM: [], //下午可选的课(已选人数小于15人)
+    courseInfoAM: [], //上午可选的课
+    courseInfoPM: [], //下午可选的课
     courseSelected: {
       AM: {
         courseName: "",
@@ -36,55 +38,24 @@ Page({
   },
 
   onLoad: function (options) {
-    const courseList = wx.cloud.database().collection("courseList");
-    const studentApp = wx.cloud.database().collection("studentApp");
-    let page = this;
-
-    setVenueCourse(page, app.globalData.openid)
-
-    // 先获取学生报名的夏令营地点，再获取课程列表
-    function setVenueCourse(page, openid) {
-      studentApp.where({
-        _openid: openid,
-      })
-        .limit(1)
-        .get({
-          success: res => {
-            console.log("Successfully getting student", res.data[0].name);
-            page.setData({
-              venue: res.data[0].venue,
-              studentName: res.data[0].name,
-              studentAppID: res.data[0]._id,
-            });
-            setCourse(page);
-          },
-          fail: err => {
-            console.error("Failed to get venue", err)
-          },
-        });
-    }
-
-    // 获取课程列表，在setVenueCourse中被调用
-    function setCourse(page) {
-      courseList.where({
-        venue: page.data.venue
-      }).get({
-        success: function(res) {
-          page.setData({
-            courseInfoAM: res.data.filter(obj => {
-              return (obj.time === "AM" && obj.enrolledStudents.length < 15)
-            }),
-            courseInfoPM: res.data.filter(obj => {
-              return (obj.time === "PM" && obj.enrolledStudents.length < 15)
-            }),
-            loading: false,
-          });
-        },
-        fail: err => {
-          console.error("Failed to get course list", err)
-        },
-      });
-    }
+    wx.cloud.callFunction({
+      name: "getCourseInfo",
+      data: {},
+      success: res => {
+        console.log("Successfully getting course info for", res.result.studentInfo.venue);
+        this.setData({
+          venue: res.result.studentInfo.venue,
+          studentName: res.result.studentInfo.studentName,
+          studentAppID: res.result.studentInfo.studentAppID,
+          courseInfoAM: res.result.courseInfoAM_valid,
+          courseInfoPM: res.result.courseInfoPM_valid,
+          loading: false,
+        })
+      },
+      fail: err => {
+        console.error("Failed to get course info", err);
+      },
+    });
   },
 
   selected(e) {
@@ -135,7 +106,6 @@ Page({
       const db = wx.cloud.database();
       const studentApp = db.collection("studentApp");
       const courseSelection = db.collection("courseSelection");
-      const courseList = db.collection("courseList");
       const _ = db.command;
       let page = this;
 
@@ -145,37 +115,9 @@ Page({
           hasSelectedCourse: true,
         },
         success: function(res) {
-          console.log(res.data)
+          addCourseSelection(page, courseSelection);
         }
       });
-
-      // add studentName to AM course
-      courseList.doc(this.data.courseSelected.AM._id).update({
-        data: {
-          enrolledStudents: _.push({
-            studentName: page.data.studentName,
-            studentAppID: page.data.studentAppID,
-          })
-        },
-        success: function(res) {
-          console.log(res.data)
-        }
-      });
-      
-      // add studentName to PM course
-      courseList.doc(this.data.courseSelected.PM._id).update({
-        data: {
-          enrolledStudents: _.push({
-            studentName: page.data.studentName,
-            studentAppID: page.data.studentAppID,
-          })
-        },
-        success: function(res) {
-          console.log(res.data)
-        }
-      });
-
-      addCourseSelection(page, courseSelection);
 
     } else {
       this.setData({
@@ -187,6 +129,7 @@ Page({
       courseSelection.add({
         data: {
           studentName: page.data.studentName,
+          venue: page.data.venue,
           courseSelected: {
             AM: page.data.courseSelected.AM,
             PM: page.data.courseSelected.PM,
