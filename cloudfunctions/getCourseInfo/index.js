@@ -74,10 +74,18 @@ exports.main = async (event, context) => {
       course.spotsTaken = 0;
     }
   }
+
+  let courseInfoAM_valid = courseInfoAM.filter(obj => {
+    return (obj.spotsTaken < 15)
+  });
+  let courseInfoPM_valid = courseInfoPM.filter(obj => {
+    return (obj.spotsTaken < 15)
+  });
+
   return {
     event,
     studentInfo,
-    courseInfoAM,
-    courseInfoPM,
+    courseInfoAM_valid,
+    courseInfoPM_valid,
   }
 }
