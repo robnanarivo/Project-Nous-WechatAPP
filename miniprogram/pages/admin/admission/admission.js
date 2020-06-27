@@ -183,14 +183,27 @@ Page({
       const db = wx.cloud.database();
       const studentApp = db.collection("studentApp");
       var that = this;
-      studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').skip(20 * this.data.batchCount).get({
-        success: function(res) {
-          that.setData({
-            apps: that.data.apps.concat(res.data),
-            batchCount: that.data.batchCount + 1
-          });
-        }
-      })
+      if (that.data.venueIdx == 0) {
+        studentApp.orderBy('reviewed', 'asc').orderBy('accepted', 'desc').skip(20 * this.data.batchCount).get({
+          success: function(res) {
+            that.setData({
+              apps: that.data.apps.concat(res.data),
+              batchCount: that.data.batchCount + 1
+            });
+          }
+        })
+      } else {
+        studentApp.where({
+          venue: that.data.venueArray[that.data.venueIdx],
+        }).orderBy('reviewed', 'asc').orderBy('accepted', 'desc').skip(20 * this.data.batchCount).get({
+          success: function(res) {
+            that.setData({
+              apps: that.data.apps.concat(res.data),
+              batchCount: that.data.batchCount + 1
+            });
+          }
+        })
+      }
     }
   },
 
