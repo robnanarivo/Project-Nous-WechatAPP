@@ -26,8 +26,8 @@
       </mp-cell>
 
       <!-- 联系方式 -->
-      <mp-cell prop="mobile" title="手机号">
-        <input bindinput="bindInputChange" data-field="mobile" class="weui-input" placeholder="请输入手机号" />
+      <mp-cell prop="mobile" title="联系方式">
+        <input bindinput="bindInputChange" data-field="mobile" class="weui-input" placeholder="请输入联系方式" />
       </mp-cell>
 
 			<!-- 教育背景 -->
@@ -112,7 +112,7 @@
 
     <!-- 答题 -->
 		<view class="separator" />
-    <mp-cells title="你为什么想要参与格致计划？(150-300字)">
+    <mp-cells title="你为什么想要参与格致计划？你期待从格致计划收获什么？(150-300字)">
 			<mp-cell>
       	<textarea prop="whyNous" placeholder="请输入150-300字的回答" style="height: 400rpx" bindinput="bindWhyNousChange" maxlength="300"/>
 				<view class="weui-textarea-counter">{{whyNousLength}}/300</view>
@@ -120,7 +120,7 @@
 		</mp-cells>
 
     <view class="separator" />
-    <mp-cells title="在{{venue ? venue : '你申请的读书'}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？(200-300字)">
+    <mp-cells title="请列举{{venue ? venue : '你申请的读书'}}营中你最想上的一门课（请参阅我们的公众号推送了解课程相关信息）。你为什么最想上这门课？你想在这门课中收获什么？(200-300字)">
 			<mp-cell>
       	<textarea prop="whichCourse" placeholder="请输入200-300字的回答" style="height: 350rpx" bindinput="bindWhichCourseChange" maxlength="300"/>
 				<view class="weui-textarea-counter">{{whichCourseLength}}/300</view>

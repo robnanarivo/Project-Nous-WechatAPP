@@ -61,7 +61,7 @@ Page({
       rules: {required: false},   
     }, {
       name: 'mobile',
-      rules: [{required: true, message: '你还没有填写电话'}, {mobile: true, message: '电话号码格式错误'}],
+      rules: [{required: true, message: '你还没有填写手机号码'}, {mobile: true, message: '手机号码格式错误'}],
     }, {
       name: 'subject',
       rules: {required: false},
