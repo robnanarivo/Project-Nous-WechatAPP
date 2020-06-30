@@ -202,6 +202,9 @@ Page({
       const studentApp = db.collection("studentApp");
       const that = this;
       const wxn = wx;
+
+      this.data.formData.timeSubmitted = Date();
+
       studentApp.add({
         data: this.data.formData,
         success: function(res) {
