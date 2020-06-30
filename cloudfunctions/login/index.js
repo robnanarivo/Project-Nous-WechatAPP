@@ -32,14 +32,14 @@ exports.main = async (event, context) => {
     hasApplied = true;
   }
 
-  let admin = await adminList.doc("b06604d45ee4fafc000ae4fd4bf24308").get();
+  let admin = await adminList.where({
+    openId: wxContext.OPENID,
+  }).get();
   console.log(admin)
-  for (let adminId of admin.data.adminOpenId) {
-    if (wxContext.OPENID === adminId) {
-      isAdmin = true;
-    }
+  if (admin.data.length !== 0) {
+    isAdmin = true;
   }
-
+  
   return {
     event,
     openid: wxContext.OPENID,
