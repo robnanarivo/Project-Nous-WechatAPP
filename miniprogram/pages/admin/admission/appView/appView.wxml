@@ -47,13 +47,13 @@
 		<view class="separator" />
     <mp-cells title="报名信息">
       <mp-cell>
-        <view slot="title">我可以全程参与本次格致计划</view>
-        <view slot="footer">{{app.participation ? '是' : '否'}}</view>
+      	<view slot="title">我可以全程参与本次格致计划</view>
+				<view style="color: #888888;">{{app.participation ? '是' : '否'}}</view>
       </mp-cell>
           
       <mp-cell>
         <view slot="title">我是所选营地的本地人</view>
-        <view slot="footer">{{app.isLocal ? '是' : '否'}}</view>
+        <view style="color: #888888;">{{app.isLocal ? '是' : '否'}}</view>
       </mp-cell>
     </mp-cells>
 
