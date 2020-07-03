@@ -23,7 +23,8 @@
 		},
 		"useIsolateContext": true,
 		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false
 	},
 	"appid": "wx5ee22aeb975a4ef7",
 	"projectname": "Project-Nous-WechatAPP",
