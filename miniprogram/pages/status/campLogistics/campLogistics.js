@@ -5,14 +5,74 @@ Page({
    * Page initial data
    */
   data: {
+    year: 0,
+    month: 0,
+    date: 0,
+    hours: 0,
+    location: "",
+    long: 0,
+    lat: 0,
+    loading: true,
 
+    markers: [{
+      iconPath: "../../../images/pin.png",
+      id: 0,
+      latitude: 0,
+      longitude: 0,
+      width: 60,
+      height: 60
+    }],
+    controls: [{
+      id: 1,
+      iconPath: '../../../images/格致计划logo.png',
+      position: {
+        left: 0,
+        top: 300 - 50,
+        width: 108,
+        height: 50
+      },
+      clickable: true
+    }]
+  },
+  regionchange(e) {
+    console.log(e.type)
+  },
+  markertap(e) {
+    console.log(e.detail.markerId)
+  },
+  controltap(e) {
+    console.log(e.detail.controlId)
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    const campLogistics = wx.cloud.database().collection("campLogistics");
 
+    let page = this;
+    campLogistics.where({
+      venue: options.venue
+    }).get({
+      success: res => {
+        let year = res.data[0].date.getFullYear();
+        let month = res.data[0].date.getMonth() + 1;
+        let date = res.data[0].date.getDate();
+        let hours = res.data[0].date.getHours();
+        page.setData({
+          year: year,
+          month: month,
+          date: date,
+          hours: hours,
+          location: res.data[0].location,
+          long: res.data[0].long,
+          lat: res.data[0].lat,
+          [`markers[0].latitude`]: res.data[0].lat,
+          [`markers[0].longitude`]: res.data[0].long,
+          loading: false,
+        });
+      }
+    })
   },
 
   /**
