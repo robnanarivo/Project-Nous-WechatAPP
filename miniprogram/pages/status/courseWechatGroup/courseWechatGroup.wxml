@@ -1,2 +1,20 @@
 <!--pages/status/courseWechatGroup/courseWechatGroup.wxml-->
-<text>两门课 点开后显示课程二维码</text>
+
+<view wx:if="{{loading}}" class="custom-loading">
+	<mp-loading></mp-loading>
+</view>
+
+<view wx:if="{{!loading}}" class="page">
+	<view class="page__bd">
+    <mp-cells title="课程一">
+      <mp-cell>
+        <image></image>
+      </mp-cell>
+		</mp-cells>
+    <mp-cells title="课程二">
+      <mp-cell>
+        <image></image>
+      </mp-cell>
+		</mp-cells>
+	</view>
+</view>
