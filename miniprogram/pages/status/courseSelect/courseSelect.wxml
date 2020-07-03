@@ -34,16 +34,15 @@
 
 </block>
 
-<!-- TODO: return to 加入课程微信群 -->
 <block wx:if="{{submitSuccess}}">
 	<mp-msg type="success" title="选课成功">
-		<view slot="desc">选课已经完成，再次感谢你对格致计划的信任和支持！</view>
+		<view slot="desc">选课已经完成，再次感谢你对格致计划的信任和支持！接下来你可以：</view>
 		<view slot="extend">
-			<view>1. 说明1</view>
-			<view>2. 说明2</view>
+			<view>1. 加入课程微信群</view>
+			<view>2. 查看读书营安排并加入学生群</view>
 		</view>
 		<view slot="handle">
-			<button class="weui-btn" type="primary" bindtap="tapReturnToStatus">返回状态查询页面</button>
+			<button class="weui-btn" type="primary" bindtap="tapNavigateToCourseWechatGroup">加入课程微信群</button>
 		</view>
 	</mp-msg>
 </block>
