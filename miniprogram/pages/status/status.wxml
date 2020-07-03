@@ -36,8 +36,8 @@
 
 				<mp-cells title="功能">
 					<mp-cell link hover wx:if="{{!hasSelectedCourse}}" title="开始选课" url="./courseSelect/courseSelect"></mp-cell>
-					<mp-cell link hover title="查看所有课程简介" url="./courseInfo/courseInfo?venue={{venue}}"></mp-cell>
-					<mp-cell link hover title="查看读书营安排" url="./campLogistics/campLogistics"></mp-cell>
+					<mp-cell link hover title="查看{{venue}}营所有课程简介" url="./courseInfo/courseInfo?venue={{venue}}"></mp-cell>
+					<mp-cell link hover title="查看{{venue}}营安排" url="./campLogistics/campLogistics?venue={{venue}}"></mp-cell>
 					<block wx:if="{{hasSelectedCourse}}">
 						<mp-cell link hover title="加入课程微信群" url="./courseWechatGroup/courseWechatGroup"></mp-cell>
 						<mp-cell link hover title="每日签到" url="./dailyCheckIn/dailyCheckIn"></mp-cell>
