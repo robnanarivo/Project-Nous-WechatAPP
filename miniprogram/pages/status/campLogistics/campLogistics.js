@@ -24,12 +24,12 @@ Page({
     }],
     controls: [{
       id: 1,
-      iconPath: '../../../images/格致计划logo.png',
+      iconPath: '../../../images/格致计划logo-horizontal.png',
       position: {
         left: 0,
-        top: 300 - 50,
-        width: 108,
-        height: 50
+        top: 300 - 40,
+        width: 102,
+        height: 30
       },
       clickable: true
     }]

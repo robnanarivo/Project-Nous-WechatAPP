@@ -7,7 +7,7 @@
 <block wx:if="{{!loading}}">
 	<view class="box">
 		<view class="logo">
-			<image src="../../images/格致计划logo.png" mode="aspectFit"></image>
+			<image src="../../images/格致计划logo-vertical.png" mode="aspectFit"></image>
 		</view>
 
 		<!-- Application Form -->

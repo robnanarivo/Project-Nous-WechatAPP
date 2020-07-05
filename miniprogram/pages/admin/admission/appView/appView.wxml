@@ -73,7 +73,7 @@
 		</mp-cells>
 
     <view class="separator" />
-    <mp-cells title="在{{app.venue}}营里你最想上哪一门课？为什么？你想在这门课中收获什么？">
+    <mp-cells title="请列举{{venue}}营中你最想上的一门课（请参阅我们的公众号推送了解课程相关信息）。你为什么最想上这门课？你想在这门课中收获什么？">
 			<mp-cell>
       	{{app.whichCourse}}
 			</mp-cell>
