@@ -39,7 +39,7 @@
 		<view slot="desc">选课已经完成，再次感谢你对格致计划的信任和支持！接下来你可以：</view>
 		<view slot="extend">
 			<view>1. 加入课程微信群</view>
-			<view>2. 查看读书营安排并加入学生群</view>
+			<view>2. 查看读书营安排并加入参与者群</view>
 		</view>
 		<view slot="handle">
 			<button class="weui-btn" type="primary" bindtap="tapNavigateToCourseWechatGroup">加入课程微信群</button>

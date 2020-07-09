@@ -3,7 +3,7 @@
 <mp-dialog title="提交" show="{{submitting}}" buttons="{{submitDialogBtns}}" bindbuttontap="tapSubmitDialog">
   <view>确定提交申请吗？</view>
 </mp-dialog>
-<mp-form-page title="2020格致计划学生申请表">
+<mp-form-page title="2020格致计划参与者申请表">
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
 
     <!-- 基本信息 -->

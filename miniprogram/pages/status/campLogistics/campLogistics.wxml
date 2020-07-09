@@ -19,7 +19,7 @@
 				<map id="map" longitude="{{long}}" latitude="{{lat}}" scale="15" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
 			</mp-cell>
 		</mp-cells>
-    <mp-cells title="学生群二维码">
+    <mp-cells title="参与者群二维码">
       <mp-cell>
         <image></image>
       </mp-cell>

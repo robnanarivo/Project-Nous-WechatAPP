@@ -9,7 +9,7 @@
 		<view class="page__bd">
 			<mp-cells title="申请信息">
 				<mp-cell>
-					<view style="font-size: 13px;color: #888888;">学生姓名</view>
+					<view style="font-size: 13px;color: #888888;">参与者姓名</view>
 					<view>{{studentName}}</view>
 					<view slot="footer" style="font-size: 13px;color: #888888;">申请状态</view>
 					<view slot="footer" style="color: {{reviewed ? (accepted ? 'green' : 'red'): 'black'}};">{{reviewed ? (accepted ? "已录取": "未录取"): "审阅中"}}</view>
