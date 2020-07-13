@@ -6,15 +6,19 @@
 
 <view wx:if="{{!loading}}" class="page">
 	<view class="page__bd">
-    <mp-cells title="课程一">
-      <mp-cell>
-        <image></image>
-      </mp-cell>
+		<mp-cells title="{{courseAMName}}">
+			<mp-cell>
+				<view class="box">
+					<image src="cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-课程群/{{venue}}/{{courseAMID}}.jpeg" mode="widthFix"></image>
+				</view>
+			</mp-cell>
 		</mp-cells>
-    <mp-cells title="课程二">
-      <mp-cell>
-        <image></image>
-      </mp-cell>
+		<mp-cells title="{{coursePMName}}">
+			<mp-cell>
+				<view class="box">
+					<image src="cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-课程群/{{venue}}/{{coursePMID}}.jpeg" mode="widthFix"></image>
+				</view>
+			</mp-cell>
 		</mp-cells>
 	</view>
 </view>

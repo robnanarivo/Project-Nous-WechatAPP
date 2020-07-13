@@ -5,14 +5,24 @@ Page({
    * Page initial data
    */
   data: {
-
+    courseAMID: "",
+    courseAMName: "",
+    coursePMID: "",
+    coursePMName: "",
+    venue:"",
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.setData({
+      courseAMID: options.courseAMID,
+      courseAMName: options.courseAMName,
+      coursePMID: options.coursePMID,
+      coursePMName: options.coursePMName,
+      venue: options.venue,
+    });
   },
 
   /**
