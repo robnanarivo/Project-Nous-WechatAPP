@@ -1,2 +1,2 @@
 <!--pages/dailyCheckIn/dailyCheckIn.wxml-->
-<text>敬请期待</text>
+<view class="box" style="font-size: 30px;color: #888888;">敬请期待</view>
