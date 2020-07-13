@@ -25,11 +25,11 @@
 					<mp-cells title="已选课程">
 						<mp-cell>
 							<view style="font-size: 13px;color: #888888;">上午</view>
-							<view>{{courseSelected.AM}}</view>
+							<view>{{courseSelected.AM.courseName}}</view>
 						</mp-cell>
 						<mp-cell>
 							<view style="font-size: 13px;color: #888888;">下午</view>
-							<view>{{courseSelected.PM}}</view>
+							<view>{{courseSelected.PM.courseName}}</view>
 						</mp-cell>
 					</mp-cells>
 				</block>
@@ -39,7 +39,7 @@
 					<mp-cell link hover title="查看{{venue}}营所有课程简介" url="./courseInfo/courseInfo?venue={{venue}}"></mp-cell>
 					<mp-cell link hover title="查看{{venue}}营安排" url="./campLogistics/campLogistics?venue={{venue}}"></mp-cell>
 					<block wx:if="{{hasSelectedCourse}}">
-						<mp-cell link hover title="加入课程微信群" url="./courseWechatGroup/courseWechatGroup"></mp-cell>
+						<mp-cell link hover title="加入课程微信群" url="./courseWechatGroup/courseWechatGroup?courseAMID={{courseSelected.AM.courseID}}&courseAMName={{courseSelected.AM.courseName}}&coursePMID={{courseSelected.PM.courseID}}&coursePMName={{courseSelected.PM.courseName}}&venue={{venue}}"></mp-cell>
 						<mp-cell link hover title="每日签到" url="./dailyCheckIn/dailyCheckIn"></mp-cell>
 					</block>
 				</mp-cells>

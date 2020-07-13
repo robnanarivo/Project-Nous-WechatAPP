@@ -19,8 +19,8 @@ Page({
     // course selected
     hasSelectedCourse: false,
     courseSelected: {
-      AM: "",
-      PM: "",
+      AM: {},
+      PM: {},
     },
 
     // page info
@@ -76,8 +76,8 @@ Page({
           success: res => {
             console.log("Successfully getting course selected of", res.data[0].studentName);
             page.setData({
-              "courseSelected.AM": res.data[0].courseSelected.AM.courseName,
-              "courseSelected.PM": res.data[0].courseSelected.PM.courseName,
+              "courseSelected.AM": res.data[0].courseSelected.AM,
+              "courseSelected.PM": res.data[0].courseSelected.PM,
               loadingCourseSelected: false,
             });
           },
