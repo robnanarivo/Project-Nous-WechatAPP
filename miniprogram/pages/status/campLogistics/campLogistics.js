@@ -5,6 +5,7 @@ Page({
    * Page initial data
    */
   data: {
+    venue: "",
     year: 0,
     month: 0,
     date: 0,
@@ -49,6 +50,9 @@ Page({
    */
   onLoad: function (options) {
     const campLogistics = wx.cloud.database().collection("campLogistics");
+    this.setData({
+      venue: options.venue,
+    });
 
     let page = this;
     campLogistics.where({

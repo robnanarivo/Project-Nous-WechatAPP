@@ -19,15 +19,19 @@
 				<map id="map" longitude="{{long}}" latitude="{{lat}}" scale="15" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
 			</mp-cell>
 		</mp-cells>
-    <mp-cells title="参与者群二维码">
-      <mp-cell>
-        <image></image>
-      </mp-cell>
+		<mp-cells title="参与者群二维码">
+			<mp-cell>
+				<view class="box">
+					<image src="cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-学生群/{{venue}}.jpeg" mode="widthFix"></image>
+				</view>
+			</mp-cell>
 		</mp-cells>
-    <mp-cells title="小助手微信号">
-      <mp-cell>
-        <image></image>
-      </mp-cell>
+		<mp-cells title="小助手微信号">
+			<mp-cell>
+				<view class="box">
+					<image src="cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-小助手/{{venue}}.jpeg" mode="widthFix"></image>
+				</view>
+			</mp-cell>
 		</mp-cells>
 	</view>
 </view>
