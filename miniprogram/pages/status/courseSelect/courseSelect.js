@@ -147,8 +147,9 @@ Page({
 
   // return to 加入课程微信群
   tapNavigateToCourseWechatGroup() {
+    let url = '../courseWechatGroup/courseWechatGroup?courseAMID=' + this.data.courseSelected.AM.courseID + '&courseAMName=' + this.data.courseSelected.AM.courseName + '&coursePMID=' + this.data.courseSelected.PM.courseID + '&coursePMName=' + this.data.courseSelected.PM.courseName + '&venue=' + this.data.venue
     wx.navigateTo({
-      url: '../courseWechatGroup/courseWechatGroup',
+      url: url,
     })
   },
 })
