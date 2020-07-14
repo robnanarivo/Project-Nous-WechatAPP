@@ -9,7 +9,8 @@ Page({
     courseAMName: "",
     coursePMID: "",
     coursePMName: "",
-    venue:"",
+    venue: "",
+    loading: true,
   },
 
   previewImage: function(e) {
@@ -32,6 +33,7 @@ Page({
       coursePMID: options.coursePMID,
       coursePMName: options.coursePMName,
       venue: options.venue,
+      loading: false
     });
   },
 
