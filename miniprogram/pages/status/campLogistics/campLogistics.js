@@ -44,6 +44,15 @@ Page({
   controltap(e) {
     console.log(e.detail.controlId)
   },
+  previewImage: function(e) {
+    console.log(e)
+    let current = "cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/" + e.target.id + ".jpeg";
+    console.log(current)
+    wx.previewImage({
+      current: current,
+      urls: [current],
+    });
+  },
 
   /**
    * Lifecycle function--Called when page load

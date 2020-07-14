@@ -12,6 +12,16 @@ Page({
     venue:"",
   },
 
+  previewImage: function(e) {
+    console.log(e)
+    let current = "cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-课程群/" + e.target.id + ".jpeg";
+    console.log(current)
+    wx.previewImage({
+      current: current,
+      urls: [current],
+    });
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
