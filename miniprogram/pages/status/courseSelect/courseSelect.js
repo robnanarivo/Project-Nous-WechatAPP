@@ -126,8 +126,10 @@ Page({
     }
 
     function addCourseSelection(page, courseSelection) {
+      let timeSubmitted = new Date();
       courseSelection.add({
         data: {
+          timeSubmitted: timeSubmitted,
           studentName: page.data.studentName,
           venue: page.data.venue,
           courseSelected: {
@@ -145,10 +147,10 @@ Page({
     }
   },
 
-  // return to 加入课程微信群
+  // 跳转加入课程微信群页面
   tapNavigateToCourseWechatGroup() {
     let url = '../courseWechatGroup/courseWechatGroup?courseAMID=' + this.data.courseSelected.AM.courseID + '&courseAMName=' + this.data.courseSelected.AM.courseName + '&coursePMID=' + this.data.courseSelected.PM.courseID + '&coursePMName=' + this.data.courseSelected.PM.courseName + '&venue=' + this.data.venue
-    wx.navigateTo({
+    wx.reLaunch({
       url: url,
     })
   },
