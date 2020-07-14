@@ -6,6 +6,7 @@
 
 <view wx:if="{{!loading}}" class="page">
 	<view class="page__bd">
+		<mp-cell><view class="box" style="color: #888888;">暂不支持在小程序中长按扫描</view><view class="box" style="color: #888888;">请将二维码保存到手机后扫描</view></mp-cell>
 		<mp-cells title="{{courseAMName}}">
 			<mp-cell>
 				<view class="box">
