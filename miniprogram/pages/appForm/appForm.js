@@ -6,7 +6,7 @@ Page({
    */
   data: {
     gender: "",
-    birthdate: "2002-01-01",
+    birthdate: "",
     grade: "",
     middleSchool: "",
     highSchool: "",

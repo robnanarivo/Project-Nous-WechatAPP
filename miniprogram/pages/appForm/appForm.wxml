@@ -20,8 +20,9 @@
       </mp-cell>
 
       <mp-cell prop="birthdate" title="生日">
-        <picker mode="date" value="{{birthdate}}" bindchange="bindBirthDateChange">
-          <view class="weui-input">{{birthdate}}</view>
+        <picker mode="date" value="2002-01-01" bindchange="bindBirthDateChange">
+          <view wx:if="{{birthdate}}" class="weui-input">{{birthdate}}</view>
+          <view wx:if="{{!birthdate}}" class="info">请选择生日</view>
         </picker>
       </mp-cell>
 
