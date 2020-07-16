@@ -7,6 +7,7 @@ const app = getApp();
 Page({
   data: {
     // course info
+    numberOfSpots: 0,
     courseInfoAM: [], //上午可选的课
     courseInfoPM: [], //下午可选的课
     courseSelected: {
@@ -39,7 +40,7 @@ Page({
 
   onLoad: function (options) {
     wx.cloud.callFunction({
-      name: "getCourseInfo",
+      name: "getCourseInfoNew",
       data: {},
       success: res => {
         console.log("Successfully getting course info for", res.result.studentInfo.venue);
@@ -50,7 +51,16 @@ Page({
           courseInfoAM: res.result.courseInfoAM_valid,
           courseInfoPM: res.result.courseInfoPM_valid,
           loading: false,
-        })
+        });
+        if (this.data.venue === "长沙") {
+          this.setData({
+            numberOfSpots: 15,
+          });
+        } else {
+          this.setData({
+            numberOfSpots: 12,
+          });
+        }
       },
       fail: err => {
         console.error("Failed to get course info", err);

@@ -7,7 +7,7 @@
 <block wx:if="{{!loading && !finishedAM}}">
 	<mp-cells title="上午课程列表">
 		<mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
-			<mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}    ({{item.spotsTaken}}/15)" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.AM.courseID}}"></mp-checkbox>
+			<mp-checkbox wx:for="{{courseInfoAM}}" label="{{item.courseName}}    ({{item.spotsTaken}}/{{numberOfSpots}})" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.AM.courseID}}"></mp-checkbox>
 		</mp-checkbox-group>
 	</mp-cells>
 	<view class="weui-btn-area">
@@ -18,7 +18,7 @@
 <block wx:if="{{finishedAM && !submitSuccess}}">
 	<mp-cells title="下午课程列表">
 		<mp-checkbox-group prop="radio" multi="{{false}}" bindchange="selected">
-			<mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}    ({{item.spotsTaken}}/15)" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.PM.courseID}}"></mp-checkbox>
+			<mp-checkbox wx:for="{{courseInfoPM}}" label="{{item.courseName}}    ({{item.spotsTaken}}/{{numberOfSpots}})" value="{{[item.courseName, item.courseID, item._id]}}" checked="{{item.courseID === courseSelected.PM.courseID}}"></mp-checkbox>
 		</mp-checkbox-group>
 	</mp-cells>
 	<view class="weui-btn-area">
