@@ -77,7 +77,7 @@ exports.main = async (event, context) => {
 
   let courseInfoAM_valid = {};
   let courseInfoPM_valid = {};
-  if (studentInfo.venue === "长沙") {
+  if (studentInfo.venue === "长沙" || studentInfo.venue === "贵阳") {
     courseInfoAM_valid = courseInfoAM.filter(obj => {
       return (obj.spotsTaken < 15)
     });

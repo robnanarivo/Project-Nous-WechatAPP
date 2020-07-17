@@ -52,7 +52,7 @@ Page({
           courseInfoPM: res.result.courseInfoPM_valid,
           loading: false,
         });
-        if (this.data.venue === "长沙") {
+        if (this.data.venue === "长沙" || this.data.venue === "贵阳") {
           this.setData({
             numberOfSpots: 15,
           });
