@@ -10,6 +10,7 @@ Page({
     month: 0,
     date: 0,
     hours: 0,
+    minutes: 0,
     location: "",
     long: 0,
     lat: 0,
@@ -68,15 +69,18 @@ Page({
       venue: options.venue
     }).get({
       success: res => {
+        console.log(res.data);
         let year = res.data[0].date.getFullYear();
         let month = res.data[0].date.getMonth() + 1;
         let date = res.data[0].date.getDate();
         let hours = res.data[0].date.getHours();
+        let minutes = res.data[0].date.getMinutes();
         page.setData({
           year: year,
           month: month,
           date: date,
           hours: hours,
+          minutes: minutes,
           location: res.data[0].location,
           long: res.data[0].long,
           lat: res.data[0].lat,

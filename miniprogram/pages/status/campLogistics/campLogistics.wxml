@@ -9,7 +9,7 @@
 		<mp-cells title="基本信息">
 			<mp-cell>
 				<view slot="title">集合时间</view>
-				<view slot="footer">{{year}}年{{month}}月{{date}}日上午{{hours}}点</view>
+				<view slot="footer">{{year}}年{{month}}月{{date}}日上午{{hours}}点{{minutes}}分</view>
 			</mp-cell>
 			<mp-cell>
 				<view slot="title">集合地点</view>
