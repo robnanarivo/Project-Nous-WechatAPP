@@ -23,13 +23,6 @@
 			<view class="box" style="color: #888888;">暂不支持在小程序中长按扫描</view>
 			<view class="box" style="color: #888888;">请将二维码保存到手机后扫描</view>
 		</mp-cell>
-		<mp-cells title="参与者群二维码">
-			<mp-cell>
-				<view class="box">
-					<image src="cloud://projectnous-app-qpb91.7072-projectnous-app-qpb91-1302093066/格致计划2020-学生群/{{venue}}.jpeg" mode="widthFix" bindtap="previewImage" id="格致计划2020-学生群/{{venue}}"></image>
-				</view>
-			</mp-cell>
-		</mp-cells>
 		<mp-cells title="小助手微信号">
 			<mp-cell>
 				<view class="box">
