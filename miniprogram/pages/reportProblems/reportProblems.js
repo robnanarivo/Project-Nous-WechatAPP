@@ -6,10 +6,14 @@ Page({
    */
   data: {
     formData: {
-      problem: ""
+      problem: "",
+      name:"",
     },
 
     rules: [{
+      name: 'name',
+      rules: {required: true, message: '你还没有留下姓名'},
+      }, {
       name: 'problem',
       rules: [{
           required: true,
@@ -23,10 +27,11 @@ Page({
     }],
   },
 
-  bindReportProblems: function (e) {
+  bindInputChange: function (e) {
+    const {field} = e.currentTarget.dataset;
     this.setData({
-      "formData.problem": e.detail.value,
-    });
+      [`formData.${field}`]: e.detail.value
+    })
   },
 
   tapSubmit: function (e) {

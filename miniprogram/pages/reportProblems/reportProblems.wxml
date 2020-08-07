@@ -5,8 +5,11 @@
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
 
     <mp-cells title="请描述您遇到的问题，我们将尽快为您解决：">
+      <mp-cell prop="name">
+        <input bindinput="bindInputChange" data-field="name" placeholder="请输入申请人姓名"/>
+      </mp-cell>
 			<mp-cell>
-      	<textarea prop="problem" placeholder="问题描述" style="height: 400rpx" bindinput="bindReportProblems" maxlength="500"/>
+      	<textarea prop="problem" placeholder="问题描述" data-field="problem" style="height: 400rpx" bindinput="bindInputChange" maxlength="500"/>
 			</mp-cell>
 		</mp-cells>
 
