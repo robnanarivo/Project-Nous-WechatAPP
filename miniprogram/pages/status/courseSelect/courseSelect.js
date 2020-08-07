@@ -56,7 +56,11 @@ Page({
           this.setData({
             numberOfSpots: 15,
           });
-        } else {
+        } else if (this.data.venue === "凯里") {
+          this.setData({
+            numberOfSpots: 10,
+          });
+        } else if (this.data.venue === "烟台") {
           this.setData({
             numberOfSpots: 12,
           });
