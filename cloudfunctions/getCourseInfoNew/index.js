@@ -77,7 +77,7 @@ exports.main = async (event, context) => {
 
   let courseInfoAM_valid = {};
   let courseInfoPM_valid = {};
-  if (studentInfo.venue === "长沙" || studentInfo.venue === "贵阳") {
+  if (studentInfo.venue === "长沙" || studentInfo.venue === "贵阳" || studentInfo.venue === "烟台") {
     courseInfoAM_valid = courseInfoAM.filter(obj => {
       return (obj.spotsTaken < 15)
     });
@@ -91,13 +91,6 @@ exports.main = async (event, context) => {
     courseInfoPM_valid = courseInfoPM.filter(obj => {
       return (obj.spotsTaken < 10)
     }); 
-  } else if (studentInfo.venue === "烟台") {
-    courseInfoAM_valid = courseInfoAM.filter(obj => {
-      return (obj.spotsTaken < 12)
-    });
-    courseInfoPM_valid = courseInfoPM.filter(obj => {
-      return (obj.spotsTaken < 12)
-    });
   }
 
   return {

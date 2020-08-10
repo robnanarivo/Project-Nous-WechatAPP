@@ -52,17 +52,13 @@ Page({
           courseInfoPM: res.result.courseInfoPM_valid,
           loading: false,
         });
-        if (this.data.venue === "长沙" || this.data.venue === "贵阳") {
+        if (this.data.venue === "长沙" || this.data.venue === "贵阳" || this.data.venue === "烟台") {
           this.setData({
             numberOfSpots: 15,
           });
         } else if (this.data.venue === "凯里") {
           this.setData({
             numberOfSpots: 10,
-          });
-        } else if (this.data.venue === "烟台") {
-          this.setData({
-            numberOfSpots: 12,
           });
         }
       },
