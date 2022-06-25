@@ -9,7 +9,7 @@ Page({
     loading: true,
     totalBatches: 0,
     batchCount: 0,
-    venueArray: ['所有申请', '长沙', '贵阳', '凯里', '烟台'],
+    venueArray: ['所有申请', '青岛', '绵阳2022', '长沙2022', '贵阳2022', '三门2022', '烟台2022', '遵义2022'],
     venueIdx: 0,
     totalApplicants: 0,
     totalAccepted: 0,

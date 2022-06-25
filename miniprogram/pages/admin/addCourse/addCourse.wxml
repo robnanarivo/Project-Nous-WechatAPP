@@ -60,7 +60,7 @@
         <view class="weui-cells weui-cells_after-title">
           <view class="weui-cell weui-cell_input">
             <view class="weui-cell__bd" style="margin: 30rpx 0" >
-              <input class="weui-input" name="year" placeholder="请输入课程开展的年份" value="2020" />
+              <input class="weui-input" name="year" placeholder="请输入课程开展的年份" value="2022" />
             </view>
           </view>
         </view>
@@ -69,10 +69,13 @@
       <view class="page-section page-section-gap">
         <view class="page-section-title">请选择在哪个营发布此课程</view>
         <radio-group name="venue">
-          <label><radio value="长沙"/>长沙</label>
-          <label><radio value="贵阳"/>贵阳</label>
-          <label><radio value="凯里"/>凯里</label>
-          <label><radio value="烟台"/>烟台</label>
+          <label><radio value="长沙2022"/>长沙2022</label>
+          <label><radio value="贵阳2022"/>贵阳2022</label>
+          <label><radio value="绵阳2022"/>绵阳2022</label>
+          <label><radio value="烟台2022"/>烟台2022</label>
+          <label><radio value="遵义2022"/>遵义2022</label>
+          <label><radio value="三门2022"/>三门2022</label>
+          <label><radio value="青岛"/>青岛</label>
         </radio-group>
       </view>
 

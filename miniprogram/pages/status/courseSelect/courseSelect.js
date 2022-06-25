@@ -52,15 +52,12 @@ Page({
           courseInfoPM: res.result.courseInfoPM_valid,
           loading: false,
         });
-        if (this.data.venue === "长沙" || this.data.venue === "贵阳" || this.data.venue === "烟台") {
-          this.setData({
-            numberOfSpots: 15,
-          });
-        } else if (this.data.venue === "凯里") {
-          this.setData({
-            numberOfSpots: 10,
-          });
-        }
+
+        // 课程人数
+        this.setData({
+          numberOfSpots: 15,
+        });
+ 
       },
       fail: err => {
         console.error("Failed to get course info", err);
